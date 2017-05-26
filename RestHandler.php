@@ -41,9 +41,9 @@ class RestHandler extends SimpleRest {
 		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');	
 	}
 
-	public function getLivroByCategoria($categoriaID){
+	public function getLivroByCategoria($categoriaNome){
 		$livroController = new LivroController($this->db);
-		$rawData = $livroController->getLivroByCategoria($categoriaID);
+		$rawData = $livroController->getLivroByCategoria($categoriaNome);
 
 		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
 	}

@@ -25,8 +25,8 @@ Class LivroController{
 		return $this->livroDAO->getLivroByTitle($this->conn, $title);	
 	}
 
-	public function getLivroByCategoria($categoriaID){
-		return $this->livroDAO->getLivroByCategoria($this->conn, $categoriaID);
+	public function getLivroByCategoria($categoriaNome){
+		return $this->livroDAO->getLivroByCategoria($this->conn, $categoriaNome);
 	}
 
 }
