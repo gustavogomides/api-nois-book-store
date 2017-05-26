@@ -1,6 +1,4 @@
-<?php
-require_once("RestHandler.php");
-		
+<?php		
 $method = "";
 if(isset($_GET["method"]))
 	$method = $_GET["method"];
@@ -45,6 +43,12 @@ switch($method){
 	case "listAutor":
 		$restHandler = new RestHandler();
 		$restHandler->listAutores();
+		break;
+
+	//// SEARCH
+	case "searchBooks":
+		$resHandler = new RestHandler();
+		$restHandler->searchBooks($_GET["search"]);
 		break;
 
 	case "" :

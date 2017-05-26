@@ -1,8 +1,5 @@
 <?php 
 
-include_once('./DAO/LivroDAO.php');
-include_once('./models/Livro.php');
-
 Class LivroController{
 
 	private $conn;
@@ -28,7 +25,6 @@ Class LivroController{
 	public function getLivroByCategoria($categoriaID){
 		return $this->livroDAO->getLivroByCategoria($this->conn, $categoriaID);
 	}
-
 }
 
 ?>

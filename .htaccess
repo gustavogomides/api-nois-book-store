@@ -16,3 +16,6 @@ RewriteRule ^categoria/([a-zA-Z0-9]+)$   RestController.php?method=getCategoriaI
 
 #### AUTOR
 RewriteRule ^autor/list$   RestController.php?method=listAutor [nc,qsa]
+
+#### SEARCH
+RewriteRule ^search/([^\/]+)$   RestController.php?method=searchBooks&search=$1 [nc,qsa]

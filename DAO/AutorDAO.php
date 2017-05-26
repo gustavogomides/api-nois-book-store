@@ -1,8 +1,5 @@
 <?php 
 
-include_once('DAO.php');
-include_once('LivroDAO.php');
-
 Class AutorDAO extends DAO {
 
 	private $tableName = "bookauthors";
