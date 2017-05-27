@@ -1,8 +1,5 @@
 <?php 
 
-include_once('./DAO/CategoriaDAO.php');
-include_once('./models/Categoria.php');
-
 Class CategoriaController {
 
 	private $conn;
@@ -20,7 +17,6 @@ Class CategoriaController {
 	public function getCategoriaID($nomeCategoria){
 		return $this->categoriaDAO->getCategoriaID($this->conn, $nomeCategoria);
 	}
-
 }
 
 ?>

@@ -1,11 +1,5 @@
 <?php
-include_once("SimpleRest.php");
-include_once("models/DatabaseConnection.php");
 
-include_once("controllers/LivroController.php");
-include_once("controllers/CategoriaController.php");
-include_once("controllers/AutorController.php");
-		
 class RestHandler extends SimpleRest {
 	public $db;
 
@@ -77,6 +71,14 @@ class RestHandler extends SimpleRest {
 		echo $this->generateResponse($rawData, 'Nenhuma autor encontrado!');
 	}
 
+	///// SEARCH
+	public function searchBooks($search){
+		$searchController = new SearchController($this->db);
+		$rawData = $searchController->searchBooks($search);
+
+		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
+	}
+
 	private function generateResponse($rawData, $errorMessage){
 		if(empty($rawData)) {
 			$statusCode = 404;
@@ -90,5 +92,8 @@ class RestHandler extends SimpleRest {
 		
 		return json_encode($rawData);
 	}
+
 }
+
+
 ?>

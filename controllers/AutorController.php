@@ -1,8 +1,5 @@
 <?php 
 
-include_once('./DAO/AutorDAO.php');
-include_once('./models/Autor.php');
-
 Class AutorController {
 
 	private $conn;
@@ -16,9 +13,6 @@ Class AutorController {
 	public function listAutores(){
 		return $this->autorDAO->listAutores($this->conn);
 	}
-
-
-
 }
 
 ?>
