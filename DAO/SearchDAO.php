@@ -1,4 +1,7 @@
 <?php 
+
+include_once('DAO.php');
+
 Class SearchDAO extends DAO {
 
 	public function searchBooks($conn, $search){

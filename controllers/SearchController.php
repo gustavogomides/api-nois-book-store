@@ -1,4 +1,8 @@
 <?php 
+
+include_once('./DAO/SearchDAO.php');
+include_once('./models/Search.php');
+
 Class SearchController {
 
 	private $conn;
