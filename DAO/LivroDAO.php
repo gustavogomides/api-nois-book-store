@@ -61,7 +61,7 @@ Class LivroDAO extends DAO {
 
 	public function getLivroByCategoria($conn, $categoriaNome){
 		$query = 
-			"SELECT bd.title 
+			"SELECT * 
 			FROM bookcategoriesbooks bcb JOIN bookdescriptions bd ON bcb.ISBN = bd.ISBN 
 			WHERE bcb.CategoryID = (SELECT CategoryID FROM bookcategories WHERE CategoryName = '" . $categoriaNome ."')";
 
@@ -71,7 +71,7 @@ Class LivroDAO extends DAO {
 		
 		if ($result) {
 			while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
-				array_push($livros_arr["livros"], $row["title"]);
+				array_push($livros_arr["livros"], $this->gerarLivro($row));
             }					
 		}
 
