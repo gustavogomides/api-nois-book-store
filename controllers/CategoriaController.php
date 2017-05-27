@@ -1,5 +1,8 @@
 <?php 
 
+include_once('./DAO/CategoriaDAO.php');
+include_once('./models/Categoria.php');
+
 Class CategoriaController {
 
 	private $conn;

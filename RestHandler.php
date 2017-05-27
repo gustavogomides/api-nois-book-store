@@ -1,5 +1,12 @@
 <?php
 
+include_once("SimpleRest.php");
+include_once("models/DatabaseConnection.php");
+include_once("controllers/LivroController.php");
+include_once("controllers/CategoriaController.php");
+include_once("controllers/AutorController.php");
+include_once("controllers/SearchController.php");
+
 class RestHandler extends SimpleRest {
 	public $db;
 

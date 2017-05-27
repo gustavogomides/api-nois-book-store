@@ -1,5 +1,7 @@
 <?php 
 
+include_once('DAO.php');
+
 Class LivroDAO extends DAO {
 
 	private $tableName = "bookdescriptions";

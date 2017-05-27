@@ -1,5 +1,8 @@
 <?php 
 
+include_once('./DAO/AutorDAO.php');
+include_once('./models/Autor.php');
+
 Class AutorController {
 
 	private $conn;

@@ -1,4 +1,6 @@
 <?php		
+require_once("RestHandler.php");
+
 $method = "";
 if(isset($_GET["method"]))
 	$method = $_GET["method"];
@@ -47,7 +49,7 @@ switch($method){
 
 	//// SEARCH
 	case "searchBooks":
-		$resHandler = new RestHandler();
+		$restHandler = new RestHandler();
 		$restHandler->searchBooks($_GET["search"]);
 		break;
 
