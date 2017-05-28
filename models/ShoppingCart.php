@@ -1,9 +1,11 @@
 <?php
 
 Class ShoppingCart {
-    public $title;
-    public $price;
-	
+    public $bookArray;
+	public $subTot;
+	public $shipping;
+	public $total;
+	public $bookCount;
     
     public function __set($atrib, $value){ 
 		$this->$atrib = $value;
