@@ -19,3 +19,7 @@ RewriteRule ^autor/list$   RestController.php?method=listAutor [nc,qsa]
 
 #### SEARCH
 RewriteRule ^search/([^\/]+)$   RestController.php?method=searchBooks&search=$1 [nc,qsa]
+
+#### SHOPPING CART
+RewriteRule ^shopping/add/([0-9]+)$   RestController.php?method=addBooksToCart&addISBN=$1 [nc,qsa]
+RewriteRule ^shopping/remove/([0-9]+)$   RestController.php?method=removeBooksFromCart&deleteISBN=$1 [nc,qsa]

@@ -53,6 +53,17 @@ switch($method){
 		$restHandler->searchBooks($_GET["search"]);
 		break;
 
+	//// SHOPPING CART
+	case "addBooksToCart":
+		$restHandler = new RestHandler();
+		$restHandler->addBooksToCart($_GET["addISBN"]);
+		break;
+
+	case "removeBooksFromCart":
+		$restHandler = new RestHandler();
+		$restHandler->removeBooksFromCart($_GET["deleteISBN"]);
+		break;
+
 	case "" :
 		//404 - not found;
 		break;

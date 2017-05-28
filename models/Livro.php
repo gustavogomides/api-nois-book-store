@@ -18,6 +18,7 @@ Class Livro {
 		return $this->$atrib;
 	}
 }
+
 ?>
 
 

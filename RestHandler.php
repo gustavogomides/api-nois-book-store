@@ -6,6 +6,7 @@ include_once("controllers/LivroController.php");
 include_once("controllers/CategoriaController.php");
 include_once("controllers/AutorController.php");
 include_once("controllers/SearchController.php");
+include_once("controllers/ShoppingCartController.php");
 
 class RestHandler extends SimpleRest {
 	public $db;
@@ -84,6 +85,21 @@ class RestHandler extends SimpleRest {
 		$rawData = $searchController->searchBooks($search);
 
 		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
+	}
+
+	///// SHOPPING CART
+	public function addBooksToCart($addISBN){
+		$shoppingCartController = new ShoppingCartController($this->db);
+		$rawData = $shoppingCartController->addBooksToCart($addISBN);
+
+		echo $this->generateResponse($rawData, 'Nenhum livro adicionado!');
+	}
+
+	public function removeBooksFromCart($deleteISBN){
+		$shoppingCartController = new ShoppingCartController($this->db);
+		$rawData = $shoppingCartController->removeBooksFromCart($deleteISBN);
+
+		echo $this->generateResponse($rawData, 'Nenhum livro removido!');
 	}
 
 	private function generateResponse($rawData, $errorMessage){
