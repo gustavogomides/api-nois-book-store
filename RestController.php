@@ -54,14 +54,9 @@ switch($method){
 		break;
 
 	//// SHOPPING CART
-	case "addBooksToCart":
+	case "booksToCart":
 		$restHandler = new RestHandler();
-		$restHandler->addBooksToCart($_GET["addISBN"]);
-		break;
-
-	case "removeBooksFromCart":
-		$restHandler = new RestHandler();
-		$restHandler->removeBooksFromCart($_GET["deleteISBN"]);
+		$restHandler->booksToCart($_GET["ISBN"]);
 		break;
 
 	case "" :

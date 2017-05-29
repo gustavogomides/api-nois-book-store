@@ -88,18 +88,11 @@ class RestHandler extends SimpleRest {
 	}
 
 	///// SHOPPING CART
-	public function addBooksToCart($addISBN){
+	public function booksToCart($ISBN){
 		$shoppingCartController = new ShoppingCartController($this->db);
-		$rawData = $shoppingCartController->addBooksToCart($addISBN);
+		$rawData = $shoppingCartController->booksToCart($ISBN);
 
 		echo $this->generateResponse($rawData, 'Nenhum livro adicionado!');
-	}
-
-	public function removeBooksFromCart($deleteISBN){
-		$shoppingCartController = new ShoppingCartController($this->db);
-		$rawData = $shoppingCartController->removeBooksFromCart($deleteISBN);
-
-		echo $this->generateResponse($rawData, 'Nenhum livro removido!');
 	}
 
 	private function generateResponse($rawData, $errorMessage){

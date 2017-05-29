@@ -1,7 +1,7 @@
 <?php
 
 Class ShoppingCart {
-    public $bookArray;
+	public $bookList = array();
 	public $subTot;
 	public $shipping;
 	public $total;
