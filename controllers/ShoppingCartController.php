@@ -38,6 +38,7 @@ class ShoppingCartController{
              $this->book[$isbn]->title = $title;
              $this->book[$isbn]->price = $price;
              $this->book[$isbn]->qty = $qty;
+             $this->book[$isbn]->total = $price * $qty;
 
              // The list of books
              array_push($this->shoppingCart->bookList, $this->book[$isbn]);
