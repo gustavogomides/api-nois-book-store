@@ -22,4 +22,6 @@ RewriteRule ^search/([^\/]+)$   RestController.php?method=searchBooks&search=$1 
 
 #### SHOPPING CART
 RewriteRule ^shopping/([a-zA-Z0-9]+)$   RestController.php?method=booksToCart&ISBN=$1 [nc,qsa]
-##### RewriteRule ^shopping/([0-9]+)$   RestController.php?method=removeBooksFromCart&deleteISBN=$1 [nc,qsa]
+
+#### LOGIN
+RewriteRule ^login  RestController.php?method=getUserIfExists [nc,qsa]

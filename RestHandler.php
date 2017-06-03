@@ -21,7 +21,12 @@ class RestHandler extends SimpleRest {
 	}
 
 
+
+
+
+	////////////////////////////////////////
 	//// LIVRO
+	////////////////////////////////////////
 	public function listLivros() {	
 		$livroController = new LivroController($this->db);
 		$rawData = $livroController->listLivros();
@@ -50,8 +55,15 @@ class RestHandler extends SimpleRest {
 		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
 	}
 
-	
+
+
+
+
+
+
+	////////////////////////////////////////
 	//// CATEGORIA
+	////////////////////////////////////////
 	public function listCategorias() {	
 		$categoriaController = new CategoriaController($this->db);
 		$rawData = $categoriaController->listCategorias();
@@ -71,7 +83,14 @@ class RestHandler extends SimpleRest {
 		}	
 	}
 
+
+
+
+
+
+	////////////////////////////////////////
 	//// AUTOR
+	////////////////////////////////////////
 	public function listAutores() {	
 		$autorController = new AutorController($this->db);
 		$rawData = $autorController->listAutores();
@@ -79,7 +98,13 @@ class RestHandler extends SimpleRest {
 		echo $this->generateResponse($rawData, 'Nenhuma autor encontrado!');
 	}
 
+
+
+
+
+	////////////////////////////////////////
 	///// SEARCH
+	////////////////////////////////////////
 	public function searchBooks($search){
 		$searchController = new SearchController($this->db);
 		$rawData = $searchController->searchBooks($search);
@@ -87,13 +112,36 @@ class RestHandler extends SimpleRest {
 		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
 	}
 
+
+
+
+
+
+	////////////////////////////////////////
 	///// SHOPPING CART
+	////////////////////////////////////////
 	public function booksToCart($ISBN){
 		$shoppingCartController = new ShoppingCartController($this->db);
 		$rawData = $shoppingCartController->booksToCart($ISBN);
 
 		echo $this->generateResponse($rawData, 'Nenhum livro adicionado!');
 	}
+
+
+
+
+
+	////////////////////////////////////////
+	///// LOGIN
+	////////////////////////////////////////
+	public function getUserIfExists($email, $senha){
+		$loginController = new LoginController($this->db);
+		$rawData = $shoppingCartController->getUserIfExists($ISBN);
+
+		echo $this->generateResponse($rawData, 'Nenhum user encontrado!');
+	}
+
+
 
 	private function generateResponse($rawData, $errorMessage){
 		if(empty($rawData)) {
