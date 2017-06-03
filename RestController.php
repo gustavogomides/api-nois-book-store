@@ -62,12 +62,16 @@ switch($method){
 	//Login
 	case "getUserIfExists":
 		$restHandler = new RestHandler();
+		# Get JSON as a string
+		$json_str = file_get_contents('php://input');
 
-		////////////
-		echo $_POST["email"].' - '.$_POST['senha'];
+		# Get as an object
+		$json_obj = json_decode($json_str);
+	
+		echo ($json_obj->email."----". $json_obj->senha);
 
 		///////
-		$restHandler->getUserIfExists($_POST["email"], $_POST['senha']);
+		$restHandler->getUserIfExists($json_obj->email, $json_obj->senha);
 		break;
 
 	case "" :
