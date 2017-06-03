@@ -59,10 +59,17 @@ switch($method){
 		$restHandler->booksToCart($_GET["ISBN"]);
 		break;
 
-	//Login
+	//// Login
 	case "getUserIfExists":
 		$restHandler = new RestHandler();
-		$restHandler->login($_POST["email"], $_POST['senha']);
+		# Get JSON as a string
+		$json_str = file_get_contents('php://input');
+		# Get as an object
+		$json_obj = json_decode($json_str);
+	
+		echo ($json_obj->email."----". $json_obj->senha);
+		///////
+		$restHandler->getUserIfExists($json_obj->email, $json_obj->senha);
 		break;
 
 	case "" :

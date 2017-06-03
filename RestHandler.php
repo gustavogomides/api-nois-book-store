@@ -7,6 +7,7 @@ include_once("controllers/CategoriaController.php");
 include_once("controllers/AutorController.php");
 include_once("controllers/SearchController.php");
 include_once("controllers/ShoppingCartController.php");
+include_once("controllers/LoginController.php");
 
 class RestHandler extends SimpleRest {
 	public $db;
@@ -136,7 +137,7 @@ class RestHandler extends SimpleRest {
 	////////////////////////////////////////
 	public function getUserIfExists($email, $senha){
 		$loginController = new LoginController($this->db);
-		$rawData = $shoppingCartController->getUserIfExists($ISBN);
+		$rawData = $loginController->getUserIfExists($email, $senha);
 
 		echo $this->generateResponse($rawData, 'Nenhum user encontrado!');
 	}
