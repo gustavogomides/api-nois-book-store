@@ -62,12 +62,7 @@ switch($method){
 	//Login
 	case "getUserIfExists":
 		$restHandler = new RestHandler();
-
-		////////////
-		echo $_POST["email"].' - '.$_POST['senha'];
-
-		///////
-		$restHandler->getUserIfExists($_POST["email"], $_POST['senha']);
+		$restHandler->login($_POST["email"], $_POST['senha']);
 		break;
 
 	case "" :
