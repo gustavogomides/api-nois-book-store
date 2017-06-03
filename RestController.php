@@ -29,6 +29,25 @@ switch($method){
 		$restHandler = new RestHandler();
 		$restHandler->getLivroByCategoria($_GET["categoriaNome"]);
 		break;
+	
+	case "inserirLivro":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$livro = json_decode($json_str);
+		$restHandler->inserirLivro($livro);
+		break;
+	
+	case "updateLivro":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$livro = json_decode($json_str);
+		$restHandler->updateLivro($livro);
+		break;
+	
+	case "deleteLivro":
+		$restHandler = new RestHandler();
+		$restHandler->deleteLivro($_GET["id"]);
+		break;
 
 	//// CATEGORIA
 	case "listCategoria":
@@ -41,11 +60,60 @@ switch($method){
 		$restHandler->getCategoriaID($_GET["nome"]);
 		break;
 
+	case "inserirCategoria":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$categoria = json_decode($json_str);
+		$restHandler->inserirCategoria($categoria);
+		break;
+
+	case "getCategoriaByID":
+		$restHandler = new RestHandler();
+		$restHandler->getCategoriaByID($_GET["id"]);
+		break;
+	
+	case "updateCategoria":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$categoria = json_decode($json_str);
+		$restHandler->updateCategoria($categoria);
+		break;
+	
+	case "deleteCategoria":
+		$restHandler = new RestHandler();
+		$restHandler->deleteCategoria($_GET["id"]);
+		break;
+
 	//// AUTOR
 	case "listAutor":
 		$restHandler = new RestHandler();
 		$restHandler->listAutores();
 		break;
+
+	case "inserirAutor":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$autor = json_decode($json_str);
+		$restHandler->inserirAutor($autor);
+		break;
+
+	case "getAutorByID":
+		$restHandler = new RestHandler();
+		$restHandler->getAutorByID($_GET["id"]);
+		break;
+	
+	case "updateAutor":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$autor = json_decode($json_str);
+		$restHandler->updateAutor($autor);
+		break;
+	
+	case "deleteAutor":
+		$restHandler = new RestHandler();
+		$restHandler->deleteAutor($_GET["id"]);
+		break;
+
 
 	//// SEARCH
 	case "searchBooks":
@@ -60,16 +128,11 @@ switch($method){
 		break;
 
 	//// Login
-	case "getUserIfExists":
+	case "login":
 		$restHandler = new RestHandler();
-		# Get JSON as a string
 		$json_str = file_get_contents('php://input');
-		# Get as an object
 		$json_obj = json_decode($json_str);
-	
-		echo ($json_obj->email."----". $json_obj->senha);
-		///////
-		$restHandler->getUserIfExists($json_obj->email, $json_obj->senha);
+		$restHandler->login($json_obj->email, $json_obj->senha);
 		break;
 
 	case "" :

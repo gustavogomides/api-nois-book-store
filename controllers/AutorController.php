@@ -16,6 +16,22 @@ Class AutorController {
 	public function listAutores(){
 		return $this->autorDAO->listAutores($this->conn);
 	}
+
+	public function inserirAutor($autor){
+		return $this->autorDAO->inserirAutor($this->conn, $autor);
+	}
+
+	public function getAutorByID($id){
+		return $this->autorDAO->getAutorByID($this->conn, $id);
+	}
+
+	public function updateAutor($autor){
+		return $this->autorDAO->updateAutor($this->conn, $autor);
+	}
+
+	public function deleteAutor($id){
+		return $this->autorDAO->deleteAutor($this->conn, $id);
+	}
 }
 
 ?>

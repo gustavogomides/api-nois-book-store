@@ -9,13 +9,24 @@ RewriteRule ^livro/list$   RestController.php?method=listLivro [nc,qsa]
 RewriteRule ^livro/([0-9]+)$   RestController.php?method=getLivroByIsbn&isbn=$1 [nc,qsa]
 RewriteRule ^livro/titulo/([^\/]+)$   RestController.php?method=getLivroByTitle&title=$1 [nc,qsa]
 RewriteRule ^livro/categoria/([^\/]+)$   RestController.php?method=getLivroByCategoria&categoriaNome=$1 [nc,qsa]
+RewriteRule ^livro/insert$   RestController.php?method=inserirLivro [nc,qsa]
+RewriteRule ^livro/update$   RestController.php?method=updateLivro [nc,qsa]
+RewriteRule ^livro/delete/([0-9]+)$   RestController.php?method=deleteLivro&id=$1 [nc,qsa]
 
 #### CATEGORIA
 RewriteRule ^categoria/list$   RestController.php?method=listCategoria [nc,qsa]
+RewriteRule ^categoria/insert$   RestController.php?method=inserirCategoria [nc,qsa]
+RewriteRule ^categoria/update$   RestController.php?method=updateCategoria [nc,qsa]
+RewriteRule ^categoria/delete/([0-9]+)$   RestController.php?method=deleteCategoria&id=$1 [nc,qsa]
 RewriteRule ^categoria/([a-zA-Z0-9]+)$   RestController.php?method=getCategoriaID&nome=$1 [nc,qsa]
+RewriteRule ^categoria/list/([0-9]+)$   RestController.php?method=getCategoriaByID&id=$1 [nc,qsa]
 
 #### AUTOR
 RewriteRule ^autor/list$   RestController.php?method=listAutor [nc,qsa]
+RewriteRule ^autor/insert$   RestController.php?method=inserirAutor [nc,qsa]
+RewriteRule ^autor/update$   RestController.php?method=updateAutor [nc,qsa]
+RewriteRule ^autor/delete/([0-9]+)$   RestController.php?method=deleteAutor&id=$1 [nc,qsa]
+RewriteRule ^autor/list/([0-9]+)$   RestController.php?method=getAutorByID&id=$1 [nc,qsa]
 
 #### SEARCH
 RewriteRule ^search/([^\/]+)$   RestController.php?method=searchBooks&search=$1 [nc,qsa]
@@ -24,4 +35,4 @@ RewriteRule ^search/([^\/]+)$   RestController.php?method=searchBooks&search=$1 
 RewriteRule ^shopping/([a-zA-Z0-9]+)$   RestController.php?method=booksToCart&ISBN=$1 [nc,qsa]
 
 #### LOGIN
-RewriteRule ^login  RestController.php?method=getUserIfExists [nc,qsa]
+RewriteRule ^login  RestController.php?method=login [nc,qsa]

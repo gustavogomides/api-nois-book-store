@@ -56,8 +56,26 @@ class RestHandler extends SimpleRest {
 		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
 	}
 
+	public function inserirLivro($livro){
+		$livroController = new LivroController($this->db);
+		$rawData = $livroController->inserirLivro($livro);
 
+		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
+	}
 
+	public function deleteLivro($id){
+		$livroController = new LivroController($this->db);
+		$rawData = $livroController->deleteLivro($id);
+
+		echo $this->generateResponse($rawData, 'Nenhum autor encontrado!');
+	}
+
+	public function updateLivro($livro){
+		$livroController = new LivroController($this->db);
+		$rawData = $livroController->updateLivro($livro);
+
+		echo $this->generateResponse($rawData, 'Nenhum autor encontrado!');
+	}
 
 
 
@@ -84,9 +102,33 @@ class RestHandler extends SimpleRest {
 		}	
 	}
 
+	public function getCategoriaByID($id){
+		$categoriaController = new CategoriaController($this->db);
+		$rawData = $categoriaController->getCategoriaByID($id);
+		
+		echo $this->generateResponse($rawData, 'Nenhuma categoria encontrado!');	
+	}
 
+	public function inserirCategoria($categoria){
+		$categoriaController = new CategoriaController($this->db);
+		$rawData = $categoriaController->inserirCategoria($categoria);
 
+		echo $this->generateResponse($rawData, 'Nenhum autor encontrado!');
+	}
 
+	public function deleteCategoria($id){
+		$categoriaController = new CategoriaController($this->db);
+		$rawData = $categoriaController->deleteCategoria($id);
+
+		echo $this->generateResponse($rawData, 'Nenhum categoria encontrado!');
+	}
+
+	public function updateCategoria($categoria){
+		$categoriaController = new CategoriaController($this->db);
+		$rawData = $categoriaController->updateCategoria($categoria);
+
+		echo $this->generateResponse($rawData, 'Nenhum categoria encontrado!');
+	}
 
 
 	////////////////////////////////////////
@@ -99,8 +141,34 @@ class RestHandler extends SimpleRest {
 		echo $this->generateResponse($rawData, 'Nenhuma autor encontrado!');
 	}
 
+	public function inserirAutor($autor){
+		$autorController = new AutorController($this->db);
+		$rawData = $autorController->inserirAutor($autor);
 
+		echo $this->generateResponse($rawData, 'Nenhum autor encontrado!');
+	}
 
+	
+	public function getAutorByID($id){
+		$autorController = new AutorController($this->db);
+		$rawData = $autorController->getAutorByID($id);
+		
+		echo $this->generateResponse($rawData, 'Nenhuma autor encontrado!');	
+	}
+
+	public function deleteAutor($id){
+		$autorController = new AutorController($this->db);
+		$rawData = $autorController->deleteAutor($id);
+
+		echo $this->generateResponse($rawData, 'Nenhum autor encontrado!');
+	}
+
+	public function updateAutor($autor){
+		$autorController = new AutorController($this->db);
+		$rawData = $autorController->updateAutor($autor);
+
+		echo $this->generateResponse($rawData, 'Nenhum autor encontrado!');
+	}
 
 
 	////////////////////////////////////////
@@ -135,12 +203,17 @@ class RestHandler extends SimpleRest {
 	////////////////////////////////////////
 	///// LOGIN
 	////////////////////////////////////////
-	public function getUserIfExists($email, $senha){
+	public function login($email, $senha){
 		$loginController = new LoginController($this->db);
-		$rawData = $loginController->getUserIfExists($email, $senha);
+		$rawData = $loginController->login($email, $senha);
 
 		echo $this->generateResponse($rawData, 'Nenhum user encontrado!');
 	}
+
+	////////////////////////////////////////
+	///// INSERIR LIVRO
+	////////////////////////////////////////
+	
 
 
 

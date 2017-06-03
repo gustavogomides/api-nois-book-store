@@ -39,6 +39,37 @@ Class CategoriaDAO extends DAO {
 
 	}
 
+	public function inserirCategoria($conn, $categoria){
+		$query = "INSERT INTO bookcategories
+				(CategoryName) 
+				VALUES ('" . $categoria->nome ."')";
+
+       $result = $this->executeQuery($conn, $query);
+	}
+
+	public function getCategoriaByID($conn, $id){
+		$query = "SELECT * FROM " . $this->tableName . " WHERE CategoryID = '" . $id . "'";
+
+        $result = $this->executeQuery($conn, $query);
+		
+		if ($result) {
+			$row = mysqli_fetch_array($result, MYSQLI_BOTH);            
+			return $this->gerarCategoria($row);
+        }else{
+			return null;
+		}
+	}
+
+	public function updateCategoria($conn, $id, $nome){
+		$query = "UPDATE " . $this->tableName . " SET CategoryName = '".$nome."' WHERE CategoryID = '".$id."'";
+        $result = $this->executeQuery($conn, $query);
+	}
+
+	public function deleteCategoria($conn, $id){
+		$query = "DELETE FROM " . $this->tableName . " WHERE CategoryID = '".$id."'";
+        $result = $this->executeQuery($conn, $query);
+	}
+
 	private function gerarCategoria($row){
 		$categoria = new Categoria();
 		$categoria->CategoryID = $row["CategoryID"];

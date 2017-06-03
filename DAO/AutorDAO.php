@@ -28,6 +28,36 @@ Class AutorDAO extends DAO {
 		return $autores_arr;
 	}
 
+	public function inserirAutor($conn, $autor){
+		$query = "INSERT INTO bookauthors
+				(nameF, nameL) 
+				VALUES ('" . $autor->nome ."','" . $autor->sobrenome ."')";
+		
+		$result = $this->executeQuery($conn, $query);
+	}
+
+	public function getAutorByID($conn, $id){
+		$query = "SELECT * FROM " . $this->tableName . " WHERE AuthorID = '" . $id . "'";
+
+        $result = $this->executeQuery($conn, $query);
+		
+		if ($result) {
+			$row = mysqli_fetch_array($result, MYSQLI_BOTH);            
+			return $this->gerarAutor($conn, $row);
+        }else{
+			return null;
+		}
+	}
+
+	public function updateAutor($conn, $autor){
+		$query = "UPDATE " . $this->tableName . " SET nameF = '".$autor->nome."', nameL = '".$autor->sobrenome."' WHERE AuthorID = '".$autor->id."'";
+        $result = $this->executeQuery($conn, $query);
+	}
+
+	public function deleteAutor($conn, $id){
+		$query = "DELETE FROM " . $this->tableName . " WHERE AuthorID = '".$id."'";
+        $result = $this->executeQuery($conn, $query);
+	}
 
 	private function gerarAutor($conn, $row){
 		$autor = new Autor();

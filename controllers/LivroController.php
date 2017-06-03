@@ -28,6 +28,18 @@ Class LivroController{
 	public function getLivroByCategoria($categoriaNome){
 		return $this->livroDAO->getLivroByCategoria($this->conn, $categoriaNome);
 	}
+
+	public function inserirLivro($livro){
+		return $this->livroDAO->inserirLivro($this->conn, $livro);
+	}
+
+	public function updateLivro($livro){
+		return $this->livroDAO->updateLivro($this->conn, $livro);
+	}
+
+	public function deleteLivro($id){
+		return $this->livroDAO->deleteLivro($this->conn, $id);
+	}
 }
 
 ?>

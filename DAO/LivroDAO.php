@@ -101,6 +101,40 @@ Class LivroDAO extends DAO {
 
 	}
 
+	public function inserirLivro($conn, $livro){
+		$query = "INSERT INTO bookdescriptions
+				(ISBN, title, description, price, publisher, pubdate, edition, pages) 
+				VALUES ('" . $livro->isbn ."',
+						'" . $livro->title ."',
+						'" . $livro->description ."',
+						'" . $livro->price ."',
+						'" . $livro->publisher ."',
+						'" . $livro->pubdate ."',
+						'" . $livro->edition ."',
+						'" . $livro->pages ."')";
+
+       $result = $this->executeQuery($conn, $query);
+	}
+
+	public function updateLivro($conn, $livro){
+		$query = "UPDATE " . $this->tableName . " SET 
+								ISBN = '".$livro->isbn."', 
+								title = '".$livro->titulo."',
+								description = '".$livro->descricao."',
+								price = '".$livro->preco."',
+								publisher = '".$livro->editora."',
+								pubdate = '".$livro->data."' ,
+								edition = '".$livro->edicao."',
+								pages = '".$livro->paginas."'
+				WHERE ISBN = '".$livro->isbn."'";
+        $result = $this->executeQuery($conn, $query);
+	}
+
+	public function deleteLivro($conn, $id){
+		$query = "DELETE FROM " . $this->tableName . " WHERE ISBN = '".$id."'";
+        $result = $this->executeQuery($conn, $query);
+	}
+
 	private function gerarLivro($row){
 		$livro = new Livro();
 		$livro->ISBN = $row["ISBN"];

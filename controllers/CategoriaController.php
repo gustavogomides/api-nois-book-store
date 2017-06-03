@@ -20,6 +20,22 @@ Class CategoriaController {
 	public function getCategoriaID($nomeCategoria){
 		return $this->categoriaDAO->getCategoriaID($this->conn, $nomeCategoria);
 	}
+
+	public function inserirCategoria($categoria){
+		return $this->categoriaDAO->inserirCategoria($this->conn, $categoria);
+	}
+
+	public function getCategoriaByID($id){
+		return $this->categoriaDAO->getCategoriaByID($this->conn, $id);
+	}
+
+	public function updateCategoria($categoria){
+		return $this->categoriaDAO->updateCategoria($this->conn, $categoria->id, $categoria->nome);
+	}
+
+	public function deleteCategoria($id){
+		return $this->categoriaDAO->deleteCategoria($this->conn, $id);
+	}
 }
 
 ?>
