@@ -102,6 +102,7 @@ Class LivroDAO extends DAO {
 	}
 
 	public function inserirLivro($conn, $livro){
+		//$this->fileUpload();
 		$query = "INSERT INTO bookdescriptions
 				(ISBN, title, description, price, publisher, pubdate, edition, pages) 
 				VALUES ('" . $livro->isbn ."',
@@ -119,13 +120,13 @@ Class LivroDAO extends DAO {
 	public function updateLivro($conn, $livro){
 		$query = "UPDATE " . $this->tableName . " SET 
 								ISBN = '".$livro->isbn."', 
-								title = '".$livro->titulo."',
-								description = '".$livro->descricao."',
-								price = '".$livro->preco."',
-								publisher = '".$livro->editora."',
-								pubdate = '".$livro->data."' ,
-								edition = '".$livro->edicao."',
-								pages = '".$livro->paginas."'
+								title = '".$livro->title."',
+								description = '".$livro->description."',
+								price = '".$livro->price."',
+								publisher = '".$livro->pusblisher."',
+								pubdate = '".$livro->pubdate."' ,
+								edition = '".$livro->edition."',
+								pages = '".$livro->pages."'
 				WHERE ISBN = '".$livro->isbn."'";
         $result = $this->executeQuery($conn, $query);
 	}
@@ -147,6 +148,25 @@ Class LivroDAO extends DAO {
 		$livro->pages = $row["pages"];
 
 		return $livro;
+	}
+
+
+	public function fileUpload(){
+		/* PUT data comes in on the stdin stream */
+		$putdata = fopen("/home/francis/Imagens/heihei.png", "r");
+
+		/* Open a file for writing */
+		$fp = fopen("/home/francis/Imagens/asd.png", "w");
+
+		/* Read the data 1 KB at a time
+		and write to the file */
+		while ($data = fread($putdata, 1024))
+		fwrite($fp, $data);
+
+		/* Close the streams */
+		fclose($fp);
+		fclose($putdata);
+		echo 'fechou';
 	}
 
 }

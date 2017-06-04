@@ -31,7 +31,7 @@ Class AutorDAO extends DAO {
 	public function inserirAutor($conn, $autor){
 		$query = "INSERT INTO bookauthors
 				(nameF, nameL) 
-				VALUES ('" . $autor->nome ."','" . $autor->sobrenome ."')";
+				VALUES ('" . $autor->nameF ."','" . $autor->nameL ."')";
 		
 		$result = $this->executeQuery($conn, $query);
 	}

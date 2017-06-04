@@ -42,7 +42,7 @@ Class CategoriaDAO extends DAO {
 	public function inserirCategoria($conn, $categoria){
 		$query = "INSERT INTO bookcategories
 				(CategoryName) 
-				VALUES ('" . $categoria->nome ."')";
+				VALUES ('" . $categoria->CategoryName ."')";
 
        $result = $this->executeQuery($conn, $query);
 	}
