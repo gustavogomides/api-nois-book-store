@@ -103,7 +103,9 @@ Class LivroDAO extends DAO {
 
 	public function inserirLivro($conn, $livro){
 		//$this->fileUpload();
-		$query = "INSERT INTO bookdescriptions
+		$query1 = "INSERT INTO bookauthorsbooks ( ISBN, AuthorID) VALUES ('" . $livro->isbn ."','" . $livro->AuthorID ."')";
+		$query2 = "INSERT INTO bookcategoriesbooks (CategoryID, ISBN) VALUES ('" . $livro->CategoryID ."','" . $livro->isbn ."')";
+		$query3 = "INSERT INTO bookdescriptions
 				(ISBN, title, description, price, publisher, pubdate, edition, pages) 
 				VALUES ('" . $livro->isbn ."',
 						'" . $livro->title ."',
@@ -113,8 +115,11 @@ Class LivroDAO extends DAO {
 						'" . $livro->pubdate ."',
 						'" . $livro->edition ."',
 						'" . $livro->pages ."')";
-
-       $result = $this->executeQuery($conn, $query);
+		echo $query1;
+		
+        $result1 = $this->executeQuery($conn, $query1);
+        $result2 = $this->executeQuery($conn, $query2);
+        $result3 = $this->executeQuery($conn, $query3);
 	}
 
 	public function updateLivro($conn, $livro){
