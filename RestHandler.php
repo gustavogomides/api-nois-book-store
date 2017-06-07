@@ -189,14 +189,7 @@ class RestHandler extends SimpleRest {
 	////////////////////////////////////////
 	///// SHOPPING CART
 	////////////////////////////////////////
-	public function booksToCart($ISBN){
-		$shoppingCartController = new ShoppingCartController($this->db);
-		$rawData = $shoppingCartController->booksToCart($ISBN);
-
-		echo $this->generateResponse($rawData, 'Nenhum livro adicionado!');
-	}
-
-
+	
 
 
 

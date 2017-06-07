@@ -122,10 +122,7 @@ switch($method){
 		break;
 
 	//// SHOPPING CART
-	case "booksToCart":
-		$restHandler = new RestHandler();
-		$restHandler->booksToCart($_GET["ISBN"]);
-		break;
+	
 
 	//// Login
 	case "login":

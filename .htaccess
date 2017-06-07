@@ -32,7 +32,7 @@ RewriteRule ^autor/list/([0-9]+)$   RestController.php?method=getAutorByID&id=$1
 RewriteRule ^search/([^\/]+)$   RestController.php?method=searchBooks&search=$1 [nc,qsa]
 
 #### SHOPPING CART
-RewriteRule ^shopping/([a-zA-Z0-9]+)$   RestController.php?method=booksToCart&ISBN=$1 [nc,qsa]
+
 
 #### LOGIN
 RewriteRule ^login  RestController.php?method=login [nc,qsa]
