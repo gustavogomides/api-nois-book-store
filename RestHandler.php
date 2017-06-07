@@ -59,8 +59,12 @@ class RestHandler extends SimpleRest {
 	public function inserirLivro($livro){
 		$livroController = new LivroController($this->db);
 		$rawData = $livroController->inserirLivro($livro);
-
-		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
+		
+		if($rawData){
+			echo $this->generateResponse('Livro inserido com sucesso!', 'Nenhum livro encontrado!');
+		}else{
+			echo $this->generateResponse('Erro na insercao do livro!', 'Nenhum livro encontrado!');
+		}
 	}
 
 	public function deleteLivro($id){
@@ -204,7 +208,11 @@ class RestHandler extends SimpleRest {
 		$shoppingCartController = new ShoppingCartController($this->db);
 		$rawData = $shoppingCartController->getCustomer($email);
 
-		echo $this->generateResponse($rawData, 'Nenhum cliente encontrado!');
+		if($rawData == null){
+			echo $this->generateResponse('Nenhum customer encontrado', "Nenhum customer encontrado");
+		}else{
+			echo $this->generateResponse($rawData, "Nenhum customer encontrado");
+		}
 	}
 
 

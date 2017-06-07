@@ -110,16 +110,21 @@ Class LivroDAO extends DAO {
 				VALUES ('" . $livro->isbn ."',
 						'" . $livro->title ."',
 						'" . $livro->description ."',
-						'" . $livro->price ."',
+						" . $livro->price .",
 						'" . $livro->publisher ."',
 						'" . $livro->pubdate ."',
-						'" . $livro->edition ."',
-						'" . $livro->pages ."')";
-		echo $query1;
-		
+						" . $livro->edition .",
+						" . $livro->pages .")";
+				
         $result1 = $this->executeQuery($conn, $query1);
         $result2 = $this->executeQuery($conn, $query2);
         $result3 = $this->executeQuery($conn, $query3);
+
+        if($result1 && $result2 && $result3){
+        	return true;
+        }else{
+        	return false;
+        }
 	}
 
 	public function updateLivro($conn, $livro){

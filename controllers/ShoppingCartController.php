@@ -2,7 +2,8 @@
 
 include_once('./DAO/ShoppingCartDAO.php');
 include_once('./models/ShoppingCart.php');
-include_once("./util/ValidationUtilities.php");
+include_once('./models/Customer.php');
+include_once('./util/ValidationUtilities.php');
 
 class ShoppingCartController{
 
@@ -21,6 +22,10 @@ class ShoppingCartController{
 
     public function validEmail($email){
         return fIsValidEmail($email);
+    }
+
+    public function getCustomer($email){
+        return $this->shoppingCartDAO->getCustomer($this->conn, $email);
     }
 
 }
