@@ -142,8 +142,13 @@ Class LivroDAO extends DAO {
 	}
 
 	public function deleteLivro($conn, $id){
-		$query = "DELETE FROM " . $this->tableName . " WHERE ISBN = '".$id."'";
-        $result = $this->executeQuery($conn, $query);
+		$query1 = "DELETE FROM bookauthorsbooks WHERE ISBN = '".$id."'";
+		$query2 = "DELETE FROM bookcategoriesbooks WHERE ISBN = '".$id."'";
+		$query3 = "DELETE FROM bookdescriptions WHERE ISBN = '".$id."'";
+
+        $result1 = $this->executeQuery($conn, $query1);
+        $result2 = $this->executeQuery($conn, $query2);
+        $result3 = $this->executeQuery($conn, $query3);
 	}
 
 	private function gerarLivro($row){
