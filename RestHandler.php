@@ -189,7 +189,23 @@ class RestHandler extends SimpleRest {
 	////////////////////////////////////////
 	///// SHOPPING CART
 	////////////////////////////////////////
-	
+	public function validEmail($email){
+		$shoppingCartController = new ShoppingCartController($this->db);
+		$rawData = $shoppingCartController->validEmail($email);
+
+		if($rawData){
+			echo $this->generateResponse('Email valido!', "Email invalido!");
+		}else{
+			echo $this->generateResponse('Email invalido!', "Email invalido!");
+		}
+	}
+
+	public function getCustomer($email){
+		$shoppingCartController = new ShoppingCartController($this->db);
+		$rawData = $shoppingCartController->getCustomer($email);
+
+		echo $this->generateResponse($rawData, 'Nenhum cliente encontrado!');
+	}
 
 
 

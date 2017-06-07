@@ -122,7 +122,15 @@ switch($method){
 		break;
 
 	//// SHOPPING CART
-	
+	case "validEmail":
+		$restHandler = new RestHandler();
+		$restHandler->validEmail($_GET["email"]);
+		break;
+
+	case "getCustomer":
+		$restHandler = new RestHandler();
+		$restHandler->getCustomer($_GET["email"]);
+		break;
 
 	//// Login
 	case "login":
