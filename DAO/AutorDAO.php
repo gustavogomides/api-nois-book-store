@@ -50,8 +50,9 @@ Class AutorDAO extends DAO {
 	}
 
 	public function updateAutor($conn, $autor){
-		$query = "UPDATE " . $this->tableName . " SET nameF = '".$autor->nome."', nameL = '".$autor->sobrenome."' WHERE AuthorID = '".$autor->id."'";
-        $result = $this->executeQuery($conn, $query);
+		$query = "UPDATE " . $this->tableName . " SET nameF = '".$autor->nameF."', nameL = '".$autor->nameL."' WHERE AuthorID = '".$autor->AuthorID."'";
+        echo $query;
+		$result = $this->executeQuery($conn, $query);
 	}
 
 	public function deleteAutor($conn, $id){

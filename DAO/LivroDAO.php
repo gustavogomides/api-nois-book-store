@@ -103,7 +103,7 @@ Class LivroDAO extends DAO {
 
 	public function inserirLivro($conn, $livro){
 		
-		$this->base64_to_jpeg($livro->image, "test.png");
+		$this->base64_to_jpeg($livro->image, $livro->isbn);
 
 		$query1 = "INSERT INTO bookauthorsbooks ( ISBN, AuthorID) VALUES ('" . $livro->isbn ."','" . $livro->AuthorID ."')";
 		$query2 = "INSERT INTO bookcategoriesbooks (CategoryID, ISBN) VALUES ('" . $livro->CategoryID ."','" . $livro->isbn ."')";
@@ -130,17 +130,25 @@ Class LivroDAO extends DAO {
 	}
 
 	public function updateLivro($conn, $livro){
-		$query = "UPDATE " . $this->tableName . " SET 
-								ISBN = '".$livro->isbn."', 
+		if($livro->image != ''){
+			$this->base64_to_jpeg($livro->image, $livro->ISBN);
+		}
+
+		$query1 = "UPDATE bookauthorsbooks SET ISBN = '" . $livro->ISBN ."' WHERE AuthorID ='" . $livro->AuthorID ."'";
+		$query2 = "UPDATE bookcategoriesbooks SET ISBN = '" . $livro->ISBN ."' WHERE CategoryID ='" . $livro->CategoryID ."'";
+		$query3 = "UPDATE " . $this->tableName . " SET 
 								title = '".$livro->title."',
 								description = '".$livro->description."',
 								price = '".$livro->price."',
-								publisher = '".$livro->pusblisher."',
+								publisher = '".$livro->publisher."',
 								pubdate = '".$livro->pubdate."' ,
 								edition = '".$livro->edition."',
 								pages = '".$livro->pages."'
-				WHERE ISBN = '".$livro->isbn."'";
-        $result = $this->executeQuery($conn, $query);
+				WHERE ISBN = '".$livro->ISBN."'";
+        $result1 = $this->executeQuery($conn, $query1);
+		$result2 = $this->executeQuery($conn, $query2);
+		echo $query2;
+        $result3 = $this->executeQuery($conn, $query3);
 	}
 
 	public function deleteLivro($conn, $id){
@@ -168,21 +176,13 @@ Class LivroDAO extends DAO {
 	}
 
 
-	function base64_to_jpeg($base64_string, $output_file) {
-		// open the output file for writing
-		$ifp = fopen( $output_file, 'wb' ); 
-
-		// split the string on commas
-		// $data[ 0 ] == "data:image/png;base64"
-		// $data[ 1 ] == <actual base64 string>
+	function base64_to_jpeg($base64_string, $isbn) {
 		$data = explode( ',', $base64_string );
-
-		// we could add validation here with ensuring count( $data ) > 1
+		$fileExtension = explode(';', explode('/', $data[0])[1])[0];
+		$output_file = $isbn.'.'.$fileExtension;
+		$ifp = fopen( $output_file, 'wb' ); 
 		fwrite( $ifp, base64_decode( $data[ 1 ] ) );
-
-		// clean up the file resource
 		fclose( $ifp ); 
-
 		return $output_file; 
 	}
 

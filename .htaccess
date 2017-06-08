@@ -6,7 +6,7 @@ RewriteEngine on
 
 #### LIVRO
 RewriteRule ^livro/list$   RestController.php?method=listLivro [nc,qsa]
-RewriteRule ^livro/([0-9]+)$   RestController.php?method=getLivroByIsbn&isbn=$1 [nc,qsa]
+RewriteRule ^livro/list/([0-9]+)$   RestController.php?method=getLivroByIsbn&isbn=$1 [nc,qsa]
 RewriteRule ^livro/titulo/([^\/]+)$   RestController.php?method=getLivroByTitle&title=$1 [nc,qsa]
 RewriteRule ^livro/categoria/([^\/]+)$   RestController.php?method=getLivroByCategoria&categoriaNome=$1 [nc,qsa]
 RewriteRule ^livro/insert$   RestController.php?method=inserirLivro [nc,qsa]

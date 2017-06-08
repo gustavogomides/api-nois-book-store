@@ -30,7 +30,7 @@ Class CategoriaController {
 	}
 
 	public function updateCategoria($categoria){
-		return $this->categoriaDAO->updateCategoria($this->conn, $categoria->id, $categoria->nome);
+		return $this->categoriaDAO->updateCategoria($this->conn, $categoria);
 	}
 
 	public function deleteCategoria($id){
