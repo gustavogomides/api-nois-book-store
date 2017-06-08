@@ -102,7 +102,9 @@ Class LivroDAO extends DAO {
 	}
 
 	public function inserirLivro($conn, $livro){
-		//$this->fileUpload();
+		
+		$this->base64_to_jpeg($livro->image, "test.png");
+
 		$query1 = "INSERT INTO bookauthorsbooks ( ISBN, AuthorID) VALUES ('" . $livro->isbn ."','" . $livro->AuthorID ."')";
 		$query2 = "INSERT INTO bookcategoriesbooks (CategoryID, ISBN) VALUES ('" . $livro->CategoryID ."','" . $livro->isbn ."')";
 		$query3 = "INSERT INTO bookdescriptions
@@ -166,23 +168,24 @@ Class LivroDAO extends DAO {
 	}
 
 
-	public function fileUpload(){
-		/* PUT data comes in on the stdin stream */
-		$putdata = fopen("/home/francis/Imagens/heihei.png", "r");
+	function base64_to_jpeg($base64_string, $output_file) {
+		// open the output file for writing
+		$ifp = fopen( $output_file, 'wb' ); 
 
-		/* Open a file for writing */
-		$fp = fopen("/home/francis/Imagens/asd.png", "w");
+		// split the string on commas
+		// $data[ 0 ] == "data:image/png;base64"
+		// $data[ 1 ] == <actual base64 string>
+		$data = explode( ',', $base64_string );
 
-		/* Read the data 1 KB at a time
-		and write to the file */
-		while ($data = fread($putdata, 1024))
-		fwrite($fp, $data);
+		// we could add validation here with ensuring count( $data ) > 1
+		fwrite( $ifp, base64_decode( $data[ 1 ] ) );
 
-		/* Close the streams */
-		fclose($fp);
-		fclose($putdata);
-		echo 'fechou';
+		// clean up the file resource
+		fclose( $ifp ); 
+
+		return $output_file; 
 	}
+
 
 }
 ?>
