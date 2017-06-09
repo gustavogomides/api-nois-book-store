@@ -127,9 +127,49 @@ switch($method){
 		$restHandler->validEmail($_GET["email"]);
 		break;
 
+	case "validState":
+		$restHandler = new RestHandler();
+		$restHandler->validState($_GET["state"]);
+		break;
+
 	case "getCustomer":
 		$restHandler = new RestHandler();
 		$restHandler->getCustomer($_GET["email"]);
+		break;
+
+	case "insertCustomer":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$customer = json_decode($json_str);
+		$restHandler->insertCustomer($customer);
+		break;
+
+	case "updateCustomer":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$customer = json_decode($json_str);
+		$restHandler->updateCustomer($customer);
+		break;
+
+	case "insertBookOrders":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$bookOrders = json_decode($json_str);
+		$restHandler->insertBookOrders($bookOrders);
+		break;
+
+	case "insertBookOrdersItems":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$bookOrdersItems = json_decode($json_str);
+		$restHandler->insertBookOrdersItems($bookOrdersItems);
+		break;
+	
+	case "enviarEmail":
+		$restHandler = new RestHandler();
+		$json_str = file_get_contents('php://input');
+		$email = json_decode($json_str);
+		$restHandler->enviarEmail($email);
 		break;
 
 	//// Login

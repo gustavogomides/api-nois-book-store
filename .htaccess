@@ -33,7 +33,13 @@ RewriteRule ^search/([^\/]+)$   RestController.php?method=searchBooks&search=$1 
 
 #### SHOPPING CART
 RewriteRule ^checkout/valid-email/([^\/]+)$   RestController.php?method=validEmail&email=$1 [nc,qsa]
+RewriteRule ^checkout/valid-state/([^\/]+)$   RestController.php?method=validState&state=$1 [nc,qsa]
 RewriteRule ^checkout/getCustomer/([^\/]+)$   RestController.php?method=getCustomer&email=$1 [nc,qsa]
-
+RewriteRule ^checkout/customer/insert$   RestController.php?method=insertCustomer [nc,qsa]
+RewriteRule ^checkout/customer/update$   RestController.php?method=updateCustomer [nc,qsa]
+RewriteRule ^checkout/bookorders/insert$   RestController.php?method=insertBookOrders [nc,qsa]
+RewriteRule ^checkout/bookorderitems/insert$   RestController.php?method=insertBookOrdersItems [nc,qsa]
+RewriteRule ^checkout/email/enviar$   RestController.php?method=enviarEmail [nc,qsa]
+ 
 #### LOGIN
 RewriteRule ^login  RestController.php?method=login [nc,qsa]
