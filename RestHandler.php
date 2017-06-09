@@ -174,6 +174,13 @@ class RestHandler extends SimpleRest {
 		echo $this->generateResponse($rawData, 'Nenhum autor encontrado!');
 	}
 
+	public function getAutorByIsbn($isbn){
+		$autorController = new AutorController($this->db);
+		$rawData = $autorController->getAutorByIsbn($isbn);
+
+		echo $this->generateResponse($rawData, 'Nenhum autor encontrado!');
+	}
+
 
 	////////////////////////////////////////
 	///// SEARCH
@@ -275,6 +282,11 @@ class RestHandler extends SimpleRest {
 		$shoppingCartController->enviarEmail($email);
 	}
 
+	public function getHistorico($custID){
+		$shoppingCartController = new ShoppingCartController($this->db);
+		$rawData = $shoppingCartController->getHistorico($custID);
+		echo $this->generateResponse($rawData, 'Nenhum histórico encontrado!');
+	}	
 	
 
 

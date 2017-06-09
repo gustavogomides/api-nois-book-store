@@ -114,6 +114,10 @@ switch($method){
 		$restHandler->deleteAutor($_GET["id"]);
 		break;
 
+	case "getAutorByIsbn":
+		$restHandler = new RestHandler();
+		$restHandler->getAutorByIsbn($_GET["isbn"]);
+		break;
 
 	//// SEARCH
 	case "searchBooks":
@@ -170,6 +174,11 @@ switch($method){
 		$json_str = file_get_contents('php://input');
 		$email = json_decode($json_str);
 		$restHandler->enviarEmail($email);
+		break;
+
+	case "getHistorico":
+		$restHandler = new RestHandler();
+		$restHandler->getHistorico($_GET["custID"]);
 		break;
 
 	//// Login

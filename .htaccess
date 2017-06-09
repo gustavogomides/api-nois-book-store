@@ -27,6 +27,7 @@ RewriteRule ^autor/insert$   RestController.php?method=inserirAutor [nc,qsa]
 RewriteRule ^autor/update$   RestController.php?method=updateAutor [nc,qsa]
 RewriteRule ^autor/delete/([0-9]+)$   RestController.php?method=deleteAutor&id=$1 [nc,qsa]
 RewriteRule ^autor/list/([0-9]+)$   RestController.php?method=getAutorByID&id=$1 [nc,qsa]
+RewriteRule ^autor/isbn/([^\/]+)$   RestController.php?method=getAutorByIsbn&isbn=$1 [nc,qsa]
 
 #### SEARCH
 RewriteRule ^search/([^\/]+)$   RestController.php?method=searchBooks&search=$1 [nc,qsa]
@@ -40,6 +41,7 @@ RewriteRule ^checkout/customer/update$   RestController.php?method=updateCustome
 RewriteRule ^checkout/bookorders/insert$   RestController.php?method=insertBookOrders [nc,qsa]
 RewriteRule ^checkout/bookorderitems/insert$   RestController.php?method=insertBookOrdersItems [nc,qsa]
 RewriteRule ^checkout/email/enviar$   RestController.php?method=enviarEmail [nc,qsa]
+RewriteRule ^checkout/historico/([^\/]+)$   RestController.php?method=getHistorico&custID=$1 [nc,qsa]
  
 #### LOGIN
 RewriteRule ^login  RestController.php?method=login [nc,qsa]

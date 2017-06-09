@@ -32,6 +32,10 @@ Class AutorController {
 	public function deleteAutor($id){
 		return $this->autorDAO->deleteAutor($this->conn, $id);
 	}
+
+	public function getAutorByIsbn($isbn){
+		return $this->autorDAO->getAutorByIsbn($this->conn, $isbn);
+	}
 }
 
 ?>

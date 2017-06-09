@@ -59,6 +59,27 @@ Class AutorDAO extends DAO {
         $result = $this->executeQuery($conn, $query);
 	}
 
+	public function getAutorByIsbn($conn, $isbn){
+		$query = "SELECT *
+                FROM bookauthors, bookauthorsbooks
+                WHERE bookauthorsbooks.ISBN = '$isbn'
+                AND bookauthors.AuthorID = bookauthorsbooks.AuthorID
+                ORDER BY nameL";
+
+        $autores_arr["autores"] = array();
+		
+		$result = $this->executeQuery($conn, $query);
+
+		if ($result) {
+			while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
+				array_push($autores_arr["autores"], $this->gerarAutor($conn, $row));
+            }			
+		
+		}
+
+		return $autores_arr;
+	}
+
 	private function gerarAutor($conn, $row){
 		$autor = new Autor();
 		$autor->AuthorID = $row["AuthorID"];

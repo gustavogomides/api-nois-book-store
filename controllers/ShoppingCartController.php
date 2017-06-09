@@ -3,6 +3,7 @@
 include_once('./DAO/ShoppingCartDAO.php');
 include_once('./models/ShoppingCart.php');
 include_once('./models/Customer.php');
+include_once('./models/Historico.php');
 include_once('./util/ValidationUtilities.php');
 
 class ShoppingCartController{
@@ -52,4 +53,8 @@ class ShoppingCartController{
         $headers = "Nois Book Store";
         mail($email->email, "Ordem de confirmação de Compra na Nois Book Store!", $email->body, $headers);
     }    
+
+    public function getHistorico($custID){
+        return $this->shoppingCartDAO->getHistorico($this->conn, $custID);
+    }
 }

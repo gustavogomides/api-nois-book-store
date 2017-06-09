@@ -88,7 +88,39 @@ Class ShoppingCartDAO extends DAO {
         }
 	}
 
+	public function getHistorico($conn, $custID){
+		$query = "SELECT DISTINCT bookorderitems.isbn, title, orderdate, bookorders.orderID, bookorderitems.qty
+			FROM bookorders, bookorderitems, bookdescriptions 
+			WHERE bookorders.custID = $custID AND bookorderitems.orderID = bookorders.orderID AND 
+			bookdescriptions.isbn = bookorderitems.isbn
+			ORDER BY bookorderitems.orderID";
 
+		$historico["historico"] = array();
+		
+		$result = $this->executeQuery($conn, $query);
+
+		if ($result) {
+			while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
+				array_push($historico["historico"], $this->gerarHistorico($row));
+            }			
+		}
+
+		return $historico;
+
+		
+	}
+
+	function gerarHistorico($row){
+		$historico = new Historico();
+		$historico->title = $row["title"];
+		$historico->isbn = $row["isbn"];
+		$historico->orderID = $row["orderID"];
+		$data = date("d M Y", $row["orderdate"]);
+		$historico->orderdate = $data;
+		$historico->qty = $row["qty"];
+
+		return $historico;
+	}
 
 	function gerarCustomer($row){
 		$customer = new Customer();
