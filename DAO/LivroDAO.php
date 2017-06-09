@@ -102,7 +102,9 @@ Class LivroDAO extends DAO {
 	}
 
 	public function inserirLivro($conn, $livro){
-		//$this->fileUpload();
+		
+		$this->base64_to_jpeg($livro->image, $livro->isbn);
+
 		$query1 = "INSERT INTO bookauthorsbooks ( ISBN, AuthorID) VALUES ('" . $livro->isbn ."','" . $livro->AuthorID ."')";
 		$query2 = "INSERT INTO bookcategoriesbooks (CategoryID, ISBN) VALUES ('" . $livro->CategoryID ."','" . $livro->isbn ."')";
 		$query3 = "INSERT INTO bookdescriptions
@@ -128,22 +130,35 @@ Class LivroDAO extends DAO {
 	}
 
 	public function updateLivro($conn, $livro){
-		$query = "UPDATE " . $this->tableName . " SET 
-								ISBN = '".$livro->isbn."', 
+		if($livro->image != ''){
+			$this->base64_to_jpeg($livro->image, $livro->ISBN);
+		}
+
+		$query1 = "UPDATE bookauthorsbooks SET ISBN = '" . $livro->ISBN ."' WHERE AuthorID ='" . $livro->AuthorID ."'";
+		$query2 = "UPDATE bookcategoriesbooks SET ISBN = '" . $livro->ISBN ."' WHERE CategoryID ='" . $livro->CategoryID ."'";
+		$query3 = "UPDATE " . $this->tableName . " SET 
 								title = '".$livro->title."',
 								description = '".$livro->description."',
 								price = '".$livro->price."',
-								publisher = '".$livro->pusblisher."',
+								publisher = '".$livro->publisher."',
 								pubdate = '".$livro->pubdate."' ,
 								edition = '".$livro->edition."',
 								pages = '".$livro->pages."'
-				WHERE ISBN = '".$livro->isbn."'";
-        $result = $this->executeQuery($conn, $query);
+				WHERE ISBN = '".$livro->ISBN."'";
+        $result1 = $this->executeQuery($conn, $query1);
+		$result2 = $this->executeQuery($conn, $query2);
+		echo $query2;
+        $result3 = $this->executeQuery($conn, $query3);
 	}
 
 	public function deleteLivro($conn, $id){
-		$query = "DELETE FROM " . $this->tableName . " WHERE ISBN = '".$id."'";
-        $result = $this->executeQuery($conn, $query);
+		$query1 = "DELETE FROM bookauthorsbooks WHERE ISBN = '".$id."'";
+		$query2 = "DELETE FROM bookcategoriesbooks WHERE ISBN = '".$id."'";
+		$query3 = "DELETE FROM bookdescriptions WHERE ISBN = '".$id."'";
+
+        $result1 = $this->executeQuery($conn, $query1);
+        $result2 = $this->executeQuery($conn, $query2);
+        $result3 = $this->executeQuery($conn, $query3);
 	}
 
 	private function gerarLivro($row){
@@ -161,23 +176,16 @@ Class LivroDAO extends DAO {
 	}
 
 
-	public function fileUpload(){
-		/* PUT data comes in on the stdin stream */
-		$putdata = fopen("/home/francis/Imagens/heihei.png", "r");
-
-		/* Open a file for writing */
-		$fp = fopen("/home/francis/Imagens/asd.png", "w");
-
-		/* Read the data 1 KB at a time
-		and write to the file */
-		while ($data = fread($putdata, 1024))
-		fwrite($fp, $data);
-
-		/* Close the streams */
-		fclose($fp);
-		fclose($putdata);
-		echo 'fechou';
+	function base64_to_jpeg($base64_string, $isbn) {
+		$data = explode( ',', $base64_string );
+		$fileExtension = explode(';', explode('/', $data[0])[1])[0];
+		$output_file = $isbn.'.'.$fileExtension;
+		$ifp = fopen( $output_file, 'wb' ); 
+		fwrite( $ifp, base64_decode( $data[ 1 ] ) );
+		fclose( $ifp ); 
+		return $output_file; 
 	}
+
 
 }
 ?>

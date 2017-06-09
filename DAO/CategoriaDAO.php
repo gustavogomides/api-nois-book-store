@@ -60,8 +60,9 @@ Class CategoriaDAO extends DAO {
 		}
 	}
 
-	public function updateCategoria($conn, $id, $nome){
-		$query = "UPDATE " . $this->tableName . " SET CategoryName = '".$nome."' WHERE CategoryID = '".$id."'";
+	public function updateCategoria($conn, $categoria){
+		$query = "UPDATE " . $this->tableName . " SET CategoryName = '".$categoria->CategoryName."' WHERE CategoryID = '".$categoria->CategoryID."'";
+		echo $query;
         $result = $this->executeQuery($conn, $query);
 	}
 
