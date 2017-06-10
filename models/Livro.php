@@ -9,6 +9,8 @@ Class Livro {
     public $pubdate;
     public $edition;
     public $pages;
+    public $nameL;
+    public $CategoryName;
 
 	public function __set($atrib, $value){ 
 		$this->$atrib = $value;

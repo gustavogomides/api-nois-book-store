@@ -25,7 +25,12 @@ Class LivroDAO extends DAO {
 	}
 
 	public function getLivroByIsbn($conn, $isbn){
-		$query = "SELECT * FROM " . $this->tableName . " WHERE ISBN = '" . $isbn . "'";
+		$query = "SELECT * FROM bookdescriptions bd 
+					RIGHT JOIN bookcategoriesbooks bcb ON bd.ISBN = bcb.ISBN 
+					RIGHT JOIN bookauthorsbooks bab ON bd.ISBN = bab.ISBN
+					LEFT JOIN bookcategories bc ON bc.CategoryID = bcb.CategoryID
+                    LEFT JOIN bookauthors ba ON ba.AuthorID = bab.AuthorID
+					WHERE bd.ISBN = '" . $isbn . "'";
 
         $livros_arr["livros"] = array();
 
@@ -170,6 +175,8 @@ Class LivroDAO extends DAO {
 		$livro->pubdate = $row["pubdate"];
 		$livro->edition = $row["edition"];
 		$livro->pages = $row["pages"];
+		$livro->CategoryName = $row["CategoryName"];
+		$livro->nameL = $row["nameL"];
 
 		return $livro;
 	}
