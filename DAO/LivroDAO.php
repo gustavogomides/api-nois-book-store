@@ -134,8 +134,8 @@ Class LivroDAO extends DAO {
 			$this->base64_to_jpeg($livro->image, $livro->ISBN);
 		}
 
-		$query1 = "UPDATE bookauthorsbooks SET ISBN = '" . $livro->ISBN ."' WHERE AuthorID ='" . $livro->AuthorID ."'";
-		$query2 = "UPDATE bookcategoriesbooks SET ISBN = '" . $livro->ISBN ."' WHERE CategoryID ='" . $livro->CategoryID ."'";
+		$query1 = "UPDATE bookauthorsbooks SET AuthorID = '" . $livro->AuthorID ."' WHERE ISBN ='" . $livro->ISBN ."'";
+		$query2 = "UPDATE bookcategoriesbooks SET CategoryID = '" . $livro->CategoryID ."' WHERE ISBN ='" . $livro->ISBN ."'";
 		$query3 = "UPDATE " . $this->tableName . " SET 
 								title = '".$livro->title."',
 								description = '".$livro->description."',
@@ -147,7 +147,6 @@ Class LivroDAO extends DAO {
 				WHERE ISBN = '".$livro->ISBN."'";
         $result1 = $this->executeQuery($conn, $query1);
 		$result2 = $this->executeQuery($conn, $query2);
-		echo $query2;
         $result3 = $this->executeQuery($conn, $query3);
 	}
 
