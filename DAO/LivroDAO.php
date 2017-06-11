@@ -185,13 +185,11 @@ Class LivroDAO extends DAO {
 	function base64_to_jpeg($base64_string, $isbn) {
 		$data = explode( ',', $base64_string );
 		$fileExtension = explode(';', explode('/', $data[0])[1])[0];
-		$output_file = $isbn.'.'.$fileExtension;
+		$output_file = "../nois-book-store/img/capas/".$isbn.'.'.$fileExtension;
 		$ifp = fopen( $output_file, 'wb' ); 
 		fwrite( $ifp, base64_decode( $data[ 1 ] ) );
 		fclose( $ifp ); 
 		return $output_file; 
 	}
-
-
 }
 ?>
