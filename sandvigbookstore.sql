@@ -190,7 +190,7 @@ CREATE TABLE `bookdescriptions` (
   `ISBN` varchar(15) NOT NULL,
   `title` varchar(100) NOT NULL,
   `description` varchar(8000) NOT NULL,
-  `price` decimal(10,0) NOT NULL,
+  `price` real NOT NULL,
   `publisher` varchar(50) NOT NULL,
   `pubdate` varchar(25) NOT NULL,
   `edition` int(11) NOT NULL,

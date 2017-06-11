@@ -16,7 +16,7 @@ Class LivroDAO extends DAO {
 
 		if ($result) {
 			while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
-				array_push($livros_arr["livros"], $this->gerarLivro($row));
+				array_push($livros_arr["livros"], $this->gerarLivro($row, false));
             }			
 		}
 
@@ -38,7 +38,7 @@ Class LivroDAO extends DAO {
 		
 		if ($result) {
 			$row = mysqli_fetch_array($result, MYSQLI_BOTH);            
-			return $this->gerarLivro($row);
+			return $this->gerarLivro($row, true);
         }else{
 			return null;
 		}
@@ -55,7 +55,7 @@ Class LivroDAO extends DAO {
 		if ($result) {
 			$row = mysqli_fetch_array($result, MYSQLI_BOTH);            
 			if(!empty($row)){
-				return $this->gerarLivro($row);	
+				return $this->gerarLivro($row, false);	
 			}else{
 				return null;
 			}
@@ -78,7 +78,7 @@ Class LivroDAO extends DAO {
 		
 		if ($result) {
 			while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
-				array_push($livros_arr["livros"], $this->gerarLivro($row));
+				array_push($livros_arr["livros"], $this->gerarLivro($row, false));
             }					
 		}
 
@@ -165,7 +165,7 @@ Class LivroDAO extends DAO {
         $result3 = $this->executeQuery($conn, $query3);
 	}
 
-	private function gerarLivro($row){
+	private function gerarLivro($row, $existeAtributo){
 		$livro = new Livro();
 		$livro->ISBN = $row["ISBN"];
 		$livro->title = $row["title"];
@@ -175,8 +175,11 @@ Class LivroDAO extends DAO {
 		$livro->pubdate = $row["pubdate"];
 		$livro->edition = $row["edition"];
 		$livro->pages = $row["pages"];
-		$livro->CategoryName = $row["CategoryName"];
-		$livro->nameL = $row["nameL"];
+		
+		if($existeAtributo){
+			$livro->CategoryName = $row["CategoryName"];
+			$livro->nameL = $row["nameL"];	
+		}		
 
 		return $livro;
 	}
