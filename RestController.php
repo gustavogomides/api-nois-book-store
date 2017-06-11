@@ -1,192 +1,195 @@
 <?php		
 require_once("RestHandler.php");
+require_once("handlers/CategoriaHandler.php");
+require_once("handlers/LivroHandler.php");
+require_once("handlers/AutorHandler.php");
+require_once("handlers/ShoppingCartHandler.php");
+require_once("handlers/SearchHandler.php");
+require_once("handlers/LoginHandler.php");
 
 $method = "";
 if(isset($_GET["method"]))
 	$method = $_GET["method"];
-/*
-controls the RESTful services
-URL mapping
-*/
+
 switch($method){
 	//// LIVRO
 	case "listLivro":
-		$restHandler = new RestHandler();
-		$restHandler->listLivros();
+		$livroHandler = new LivroHandler();
+		$livroHandler->listLivros();
 		break;
 		
 	case "getLivroByIsbn":
-		$restHandler = new RestHandler();
-		$restHandler->getLivroByIsbn($_GET["isbn"]);
+		$livroHandler = new LivroHandler();
+		$livroHandler->getLivroByIsbn($_GET["isbn"]);
 		break;
 
 	case "getLivroByTitle":
-		$restHandler = new RestHandler();
-		$restHandler->getLivroByTitle($_GET["title"]);
+		$livroHandler = new LivroHandler();
+		$livroHandler->getLivroByTitle($_GET["title"]);
 		break;
 
 	case "getLivroByCategoria":
-		$restHandler = new RestHandler();
-		$restHandler->getLivroByCategoria($_GET["categoriaNome"]);
+		$livroHandler = new LivroHandler();
+		$livroHandler->getLivroByCategoria($_GET["categoriaNome"]);
 		break;
 	
 	case "inserirLivro":
-		$restHandler = new RestHandler();
+		$livroHandler = new LivroHandler();
 		$json_str = file_get_contents('php://input');
 		$livro = json_decode($json_str);
-		$restHandler->inserirLivro($livro);
+		$livroHandler->inserirLivro($livro);
 		break;
 	
 	case "updateLivro":
-		$restHandler = new RestHandler();
+		$livroHandler = new LivroHandler();
 		$json_str = file_get_contents('php://input');
 		$livro = json_decode($json_str);
-		$restHandler->updateLivro($livro);
+		$livroHandler->updateLivro($livro);
 		break;
 	
 	case "deleteLivro":
-		$restHandler = new RestHandler();
-		$restHandler->deleteLivro($_GET["id"]);
+		$livroHandler = new LivroHandler();
+		$livroHandler->deleteLivro($_GET["id"]);
 		break;
 
 	//// CATEGORIA
 	case "listCategoria":
-		$restHandler = new RestHandler();
-		$restHandler->listCategorias();
+		$categoriaHandler = new CategoriaHandler();
+		$categoriaHandler->listCategorias();
 		break;
 
 	case "getCategoriaID":
-		$restHandler = new RestHandler();
-		$restHandler->getCategoriaID($_GET["nome"]);
+		$categoriaHandler = new CategoriaHandler();
+		$categoriaHandler->getCategoriaID($_GET["nome"]);
 		break;
 
 	case "inserirCategoria":
-		$restHandler = new RestHandler();
+		$categoriaHandler = new CategoriaHandler();
 		$json_str = file_get_contents('php://input');
 		$categoria = json_decode($json_str);
-		$restHandler->inserirCategoria($categoria);
+		$categoriaHandler->inserirCategoria($categoria);
 		break;
 
 	case "getCategoriaByID":
-		$restHandler = new RestHandler();
-		$restHandler->getCategoriaByID($_GET["id"]);
+		$categoriaHandler = new CategoriaHandler();
+		$categoriaHandler->getCategoriaByID($_GET["id"]);
 		break;
 	
 	case "updateCategoria":
-		$restHandler = new RestHandler();
+		$categoriaHandler = new CategoriaHandler();
 		$json_str = file_get_contents('php://input');
 		$categoria = json_decode($json_str);
-		$restHandler->updateCategoria($categoria);
+		$categoriaHandler->updateCategoria($categoria);
 		break;
 	
 	case "deleteCategoria":
-		$restHandler = new RestHandler();
-		$restHandler->deleteCategoria($_GET["id"]);
+		$categoriaHandler = new CategoriaHandler();
+		$categoriaHandler->deleteCategoria($_GET["id"]);
 		break;
 
 	//// AUTOR
 	case "listAutor":
-		$restHandler = new RestHandler();
-		$restHandler->listAutores();
+		$autorHandler = new AutorHandler();
+		$autorHandler->listAutores();
 		break;
 
 	case "inserirAutor":
-		$restHandler = new RestHandler();
+		$autorHandler = new AutorHandler();
 		$json_str = file_get_contents('php://input');
 		$autor = json_decode($json_str);
-		$restHandler->inserirAutor($autor);
+		$autorHandler->inserirAutor($autor);
 		break;
 
 	case "getAutorByID":
-		$restHandler = new RestHandler();
-		$restHandler->getAutorByID($_GET["id"]);
+		$autorHandler = new AutorHandler();
+		$autorHandler->getAutorByID($_GET["id"]);
 		break;
 	
 	case "updateAutor":
-		$restHandler = new RestHandler();
+		$autorHandler = new AutorHandler();
 		$json_str = file_get_contents('php://input');
 		$autor = json_decode($json_str);
-		$restHandler->updateAutor($autor);
+		$autorHandler->updateAutor($autor);
 		break;
 	
 	case "deleteAutor":
-		$restHandler = new RestHandler();
-		$restHandler->deleteAutor($_GET["id"]);
+		$autorHandler = new AutorHandler();
+		$autorHandler->deleteAutor($_GET["id"]);
 		break;
 
 	case "getAutorByIsbn":
-		$restHandler = new RestHandler();
-		$restHandler->getAutorByIsbn($_GET["isbn"]);
+		$autorHandler = new AutorHandler();
+		$autorHandler->getAutorByIsbn($_GET["isbn"]);
 		break;
 
 	//// SEARCH
 	case "searchBooks":
-		$restHandler = new RestHandler();
-		$restHandler->searchBooks($_GET["search"]);
+		$searchHandler = new SearchHandler();
+		$searchHandler->searchBooks($_GET["search"]);
 		break;
 
 	//// SHOPPING CART
 	case "validEmail":
-		$restHandler = new RestHandler();
-		$restHandler->validEmail($_GET["email"]);
+		$shoppingCartHandler = new ShoppingCartHandler();
+		$shoppingCartHandler->validEmail($_GET["email"]);
 		break;
 
 	case "validState":
-		$restHandler = new RestHandler();
-		$restHandler->validState($_GET["state"]);
+		$shoppingCartHandler = new ShoppingCartHandler();
+		$shoppingCartHandler->validState($_GET["state"]);
 		break;
 
 	case "getCustomer":
-		$restHandler = new RestHandler();
-		$restHandler->getCustomer($_GET["email"]);
+		$shoppingCartHandler = new ShoppingCartHandler();
+		$shoppingCartHandler->getCustomer($_GET["email"]);
 		break;
 
 	case "insertCustomer":
-		$restHandler = new RestHandler();
+		$shoppingCartHandler = new ShoppingCartHandler();
 		$json_str = file_get_contents('php://input');
 		$customer = json_decode($json_str);
-		$restHandler->insertCustomer($customer);
+		$shoppingCartHandler->insertCustomer($customer);
 		break;
 
 	case "updateCustomer":
-		$restHandler = new RestHandler();
+		$shoppingCartHandler = new ShoppingCartHandler();
 		$json_str = file_get_contents('php://input');
 		$customer = json_decode($json_str);
-		$restHandler->updateCustomer($customer);
+		$shoppingCartHandler->updateCustomer($customer);
 		break;
 
 	case "insertBookOrders":
-		$restHandler = new RestHandler();
+		$shoppingCartHandler = new ShoppingCartHandler();
 		$json_str = file_get_contents('php://input');
 		$bookOrders = json_decode($json_str);
-		$restHandler->insertBookOrders($bookOrders);
+		$shoppingCartHandler->insertBookOrders($bookOrders);
 		break;
 
 	case "insertBookOrdersItems":
-		$restHandler = new RestHandler();
+		$shoppingCartHandler = new ShoppingCartHandler();
 		$json_str = file_get_contents('php://input');
 		$bookOrdersItems = json_decode($json_str);
-		$restHandler->insertBookOrdersItems($bookOrdersItems);
+		$shoppingCartHandler->insertBookOrdersItems($bookOrdersItems);
 		break;
 	
 	case "enviarEmail":
-		$restHandler = new RestHandler();
+		$shoppingCartHandler = new ShoppingCartHandler();
 		$json_str = file_get_contents('php://input');
 		$email = json_decode($json_str);
-		$restHandler->enviarEmail($email);
+		$shoppingCartHandler->enviarEmail($email);
 		break;
 
 	case "getHistorico":
-		$restHandler = new RestHandler();
-		$restHandler->getHistorico($_GET["custID"]);
+		$shoppingCartHandler = new ShoppingCartHandler();
+		$shoppingCartHandler->getHistorico($_GET["custID"]);
 		break;
 
 	//// Login
 	case "login":
-		$restHandler = new RestHandler();
+		$loginHandler = new LoginHandler();
 		$json_str = file_get_contents('php://input');
 		$json_obj = json_decode($json_str);
-		$restHandler->login($json_obj->email, $json_obj->senha);
+		$loginHandler->login($json_obj->email, $json_obj->senha);
 		break;
 
 	case "" :
