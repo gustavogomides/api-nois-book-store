@@ -32,6 +32,11 @@ switch($method){
 		$livroHandler = new LivroHandler();
 		$livroHandler->getLivroByCategoria($_GET["categoriaNome"]);
 		break;
+
+	case "getLivroByAuthorName":
+		$livroHandler = new LivroHandler();
+		$livroHandler->getLivroByAuthorName($_GET["authorName"]);
+		break;
 	
 	case "inserirLivro":
 		$livroHandler = new LivroHandler();

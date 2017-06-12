@@ -106,6 +106,31 @@ Class LivroDAO extends DAO {
 
 	}
 
+
+	public function getLivroByAuthorName($conn, $authorName){
+
+		$autorData = explode('-', $authorName);
+
+		$query = 
+			"SELECT *  
+			FROM bookauthors ba JOIN bookauthorsbooks bab ON ba.AuthorID = bab.AuthorID 
+				JOIN bookdescriptions bd ON bab.ISBN = bd.ISBN 
+			WHERE ba.nameF ='$autorData[0]' AND ba.nameL ='$autorData[1]'";
+
+		$livros_arr = array();
+
+        $result = $this->executeQuery($conn, $query);
+		
+		if ($result) {
+			while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
+				array_push($livros_arr, $this->gerarLivro($row, false));
+            }					
+		}
+
+		return $livros_arr;
+
+	}
+
 	public function inserirLivro($conn, $livro){
 		
 		$this->base64_to_jpeg($livro->image, $livro->isbn);

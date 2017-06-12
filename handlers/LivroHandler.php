@@ -34,6 +34,13 @@ Class LivroHandler extends RestHandler {
 		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
 	}
 
+	public function getLivroByAuthorName($authorName){
+		$livroController = new LivroController($this->db);
+		$rawData = $livroController->getLivroByAuthorName($authorName);
+		
+		echo $this->generateResponse($rawData, 'Nenhum livro encontrado!');
+	}
+
 	public function inserirLivro($livro){
 		$livroController = new LivroController($this->db);
 		$rawData = $livroController->inserirLivro($livro);

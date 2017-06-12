@@ -29,6 +29,10 @@ Class LivroController{
 		return $this->livroDAO->getLivroByCategoria($this->conn, $categoriaNome);
 	}
 
+	public function getLivroByAuthorName($authorName){
+		return $this->livroDAO->getLivroByAuthorName($this->conn, $authorName);
+	}
+
 	public function inserirLivro($livro){
 		return $this->livroDAO->inserirLivro($this->conn, $livro);
 	}

@@ -12,6 +12,7 @@ RewriteRule ^livro/categoria/([^\/]+)$   RestController.php?method=getLivroByCat
 RewriteRule ^livro/insert$   RestController.php?method=inserirLivro [nc,qsa]
 RewriteRule ^livro/update$   RestController.php?method=updateLivro [nc,qsa]
 RewriteRule ^livro/delete/([0-9]+)$   RestController.php?method=deleteLivro&id=$1 [nc,qsa]
+RewriteRule ^livro/autor/([^\/]+)$ RestController.php?method=getLivroByAuthorName&authorName=$1 [nc,qsa]
 
 #### CATEGORIA
 RewriteRule ^categoria/list$   RestController.php?method=listCategoria [nc,qsa]
