@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 10/06/2017 às 21:13
--- Versão do servidor: 5.7.18-0ubuntu0.16.04.1
--- Versão do PHP: 7.0.18-0ubuntu0.16.04.1
+-- Host: 127.0.0.1
+-- Generation Time: 14-Jun-2017 às 01:09
+-- Versão do servidor: 10.1.22-MariaDB
+-- PHP Version: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -63,7 +65,8 @@ INSERT INTO `bookauthors` (`AuthorID`, `nameF`, `nameL`) VALUES
 (30, 'Julian', 'Templeman'),
 (31, 'Thomas', 'Erl'),
 (32, 'Hugh E.', 'Williams'),
-(33, 'David', 'Lane');
+(33, 'David', 'Lane'),
+(34, 'Robin', 'Nickson');
 
 -- --------------------------------------------------------
 
@@ -81,6 +84,7 @@ CREATE TABLE `bookauthorsbooks` (
 --
 
 INSERT INTO `bookauthorsbooks` (`ISBN`, `AuthorID`) VALUES
+('0071841580', 34),
 ('0131428985', 2),
 ('0201433362', 31),
 ('0321344758', 5),
@@ -95,6 +99,7 @@ INSERT INTO `bookauthorsbooks` (`ISBN`, `AuthorID`) VALUES
 ('0672328232', 22),
 ('0764574892', 23),
 ('0782142796', 24),
+('1491918667', 34),
 ('1590595521', 1),
 ('1590595726', 29);
 
@@ -121,7 +126,8 @@ INSERT INTO `bookcategories` (`CategoryID`, `CategoryName`) VALUES
 (5, 'ASP.NET'),
 (6, 'Regular Expressions'),
 (7, 'Web Services'),
-(8, 'Morse Code');
+(8, 'Morse Code'),
+(9, 'Javascript');
 
 -- --------------------------------------------------------
 
@@ -143,6 +149,7 @@ INSERT INTO `bookcategoriesbooks` (`CategoryID`, `ISBN`) VALUES
 (1, '0596006810'),
 (1, '0672326728'),
 (1, '0782142796'),
+(1, '1491918667'),
 (2, '0596101104'),
 (2, '1590595521'),
 (3, '0321344758'),
@@ -154,7 +161,8 @@ INSERT INTO `bookcategoriesbooks` (`CategoryID`, `ISBN`) VALUES
 (5, '1590595726'),
 (6, '0596528124'),
 (6, '0764574892'),
-(8, '0131428985');
+(8, '0131428985'),
+(9, '0071841580');
 
 -- --------------------------------------------------------
 
@@ -179,7 +187,8 @@ CREATE TABLE `bookcustomers` (
 
 INSERT INTO `bookcustomers` (`custID`, `fname`, `lname`, `email`, `street`, `city`, `state`, `zip`) VALUES
 (2, 'Gustavo', 'Gomides', 'gustavo.gomides7@gmail.com', 'Street', 'City', 'CA', '37500433'),
-(3, 'Gustavo', 'Gomides', 'gustavo.gomides7@hotmail.com', 'Rua Ã“scar RennÃ³, 223', 'ItajubÃ¡', 'CA', '37500433');
+(3, 'Gustavo', 'Gomides', 'gustavo.gomides7@hotmail.com', 'Rua Ã“scar RennÃ³, 223', 'ItajubÃ¡', 'CA', '37500433'),
+(4, 'Laercio', 'Baldochi', 'baldochi@gmail.com', 'BPS', 'Itajuba', 'WI', '37500');
 
 -- --------------------------------------------------------
 
@@ -203,6 +212,7 @@ CREATE TABLE `bookdescriptions` (
 --
 
 INSERT INTO `bookdescriptions` (`ISBN`, `title`, `description`, `price`, `publisher`, `pubdate`, `edition`, `pages`) VALUES
+('0071841580', 'Javascript: 20 lessons succesfull web development', '<p>bla bla bla</p>\n', 30.39, 'New Rider Press', 'February 0, 2015', 1, 256),
 ('0131428985', 'Service-Oriented Architecture : A Field Guide to Integrating XML and Web Services', '<p>The emergence of key second-generation Web services standards has positioned service-oriented architecture (SOA) as the foremost platform for contemporary business automation solutions. The integration of SOA principles and technology is empowering organizations to build applications with unprecedented levels of flexibility, agility, and sophistication (while also allowing them to leverage existing legacy environments).</p>\n\n<p>This guide will help you dramatically reduce the risk, complexity, and cost of integrating the many new concepts and technologies introduced by the SOA platform. It brings together the first comprehensive collection of field-proven strategies, guidelines, and best practices for making the transition toward the service-oriented enterprise.</p>\n\n<p>Writing for architects, analysts, managers, and developers, Thomas Erl offers expert advice for making strategic decisions about both immediate and long-term integration issues. Erl addresses a broad spectrum of integration challenges, covering technical and design issues, as well as strategic planning.</p>\n\n<ul>\n <li>Covers crucial second-generation (WS-*) Web services standards: BPEL4WS, WS-Security, S-Coordination, WS-Transaction, WS-Policy, WS-ReliableMessaging, and WS-Attachments</li>\n  <li>Includes hundreds of individual integration strategies and more than 60 best practices for both XML and Web services technologies</li>\n  <li>Includes a complete tutorial on service-oriented design principles for business and technical modeling</li>\n <li>Explores design issues related to a wide variety of service-oriented integration architectures that integrate XML and Web services into legacy and EAI environments</li>\n  <li>Provides a clear roadmap for planning a long-term migration toward a standardized service-oriented enterprise</li>\n</ul>\n\n<p>Service-oriented architecture is no longer an exclusive discipline practiced only by expensive consultants. With this books help, you can plan, architect, and implement your own service-oriented environments-efficiently and cost-effectively.</p>\n', 45.5, 'Prentice Hall', 'April 4, 2004', 1, 560),
 ('0201433362', 'SQL Queries for Mere Mortals: A Hands-On Guide to Data Manipulation in SQL ', '<p>To the people who are accomplished in its use, Structured Query Language (SQL) is a highly capable, eminently flexible, even beautiful way of describing the data that you want from a database, or the changes that you want to make to a database. For the rest of us, however, SQL is a first-class nuisance that we do our best to avoid by relying on relatively user-friendly--but usually less powerful--tools. <em>SQL Queries for Mere Mortals</em> aims to bring SQL-phobes closer to the first camp by tutoring them carefully in what SQL can do.</p>\n\n<p>The authors recognize that SQL queries usually come about as a result of questions from human beings, and so usefully spend a fair bit of time showing how to convert, say, In what cities do our customers live?&nbsp;into, Select city from the customers table&nbsp;and, finally, SELECT city FROM customers&nbsp;in SQL. They call this the translation and clean up&nbsp;process, and its a fine approach. They dont press it too far, however, and are equally adept at presenting straight explanations of SQL syntax elements in prose. They spend a lot of energy graphically diagramming aspects of SQL syntax in a format that requires some up-front study. A particular reader might prefer text capsules to this arrow-intensive format, but other learners might like the graphical syntax diagrams. <em>--David Wall</em></p>\n', 55, 'Addison-Wesley Professional', 'August 1, 2000', 1, 528),
 ('0321344758', 'Dont Make Me Think', '<p>Usability design is one of the most important--yet often least attractive--tasks for a Web developer. In <em>Dont Make Me Think</em>, author Steve Krug lightens up the subject with good humor and excellent, to-the-point examples.</p>\n\n<p>The title of the book is its chief personal design premise. All of the tips, techniques, and examples presented revolve around users being able to surf merrily through a well-designed site with minimal cognitive strain. Readers will quickly come to agree with many of the books assumptions, such as We dont read pages--we scan them&nbsp;and We dont figure out how things work--we muddle through.&nbsp;Coming to grips with such hard facts sets the stage for Web design that then produces topnotch sites.</p>\n\n<p>Using an attractive mix of full-color screen shots, cute cartoons and diagrams, and informative sidebars, the book keeps your attention and drives home some crucial points. Much of the content is devoted to proper use of conventions and content layout, and the before and after&nbsp;examples are superb. Topics such as the wise use of rollovers and usability testing are covered using a consistently practical approach.</p>\n\n<p>This is the type of book you can blow through in a couple of evenings. But despite its conciseness, it will give you an experts ability to judge Web design. Youll never form a first impression of a site in the same way again. <em>--Stephen W. Plain</em></p>\n\n<p><strong>Topics covered:</strong></p>\n\n<ul>\n  <li>User patterns</li>\n  <li>Designing for scanning</li>\n <li>Wise use of copy</li>\n <li>Navigation design</li>\n  <li>Home page layout</li>\n <li>Usability testing</li>\n</ul>\n', 35, 'New Riders Press', 'August 4, 2005', 2, 224),
@@ -213,10 +223,11 @@ INSERT INTO `bookdescriptions` (`ISBN`, `title`, `description`, `price`, `publis
 ('0596101104', 'Learning PHP and MySQL', '<p>The PHP scripting language and MySQL open source database are quite effective independently, but together they make a simply unbeatable team. When working hand-in-hand, they serve as the standard for the rapid development of dynamic, database-driven websites. This combination is so popular, in fact, that its attracting many programming newbies who come from a web or graphic design background and whose first language is HTML. If you fall into this ever-expanding category, then this book is for you.</p>\n', 30, 'O Reilly Media', 'October 0, 2016', 1, 359),
 ('0596528124', 'Mastering Regular Expressions', '<p>Regular expressions are an extremely powerful tool for manipulating text and data. They are now standard features in a wide range of languages and popular tools, including Perl, Python, Ruby, Java, VB.NET and C# (and any language using the .NET Framework), PHP, and MySQL.</p>\n\n<p>If you dont use regular expressions yet, you will discover in this book a whole new world of mastery over your data. If you already use them, youll appreciate this books unprecedented detail and breadth of coverage. If you think you know all you need to know about regular expressions, this book is a stunning eye-opener.</p>\n\n<p>&nbsp;As this book shows, a command of regular expressions is an invaluable skill. Regular expressions allow you to code complex and subtle text processing that you never imagined could be automated. Regular expressions can save you time and aggravation. They can be used to craft elegant solutions to a wide range of problems. Once youve mastered regular expressions, theyll become an invaluable part of your toolkit. You will wonder how you ever got by without them.</p>\n\n<p>Yet despite their wide availability, flexibility, and unparalleled power, regular expressions are frequently underutilized. Yet what is power in the hands of an expert can be fraught with peril for the unwary. <strong>Mastering Regular Expressions</strong>&nbsp;will help you navigate the minefield to becoming an expert and help you optimize your use of regular expressions. <strong>Mastering Regular Expressions</strong>, Third Edition, now includes a full chapter devoted to PHP and its powerful and expressive suite of regular expression functions, in addition to enhanced PHP coverage in the central &amp;quot;core&amp;quot; chapters. Furthermore, this edition has been updated throughout to reflect advances in other languages, including expanded in-depth coverage of Suns j<strong>ava.util.regex</strong>&nbsp;package, which has emerged as the standard Java regex implementation.Topics include:</p>\n\n<ul>\n <li>A comparison of features among different versions of many languages and tools</li>\n  <li>How the regular expression engine works</li>\n  <li>Optimization (major savings available here!)</li>\n <li>Matching just what you want, but not what you dont want</li>\n  <li>Sections and chapters on individual languages</li>\n</ul>\n\n<p>Written in the lucid, entertaining tone that makes a complex, dry topic become crystal-clear to programmers, and sprinkled with solutions to complex real-world problems, <strong>Mastering Regular Expressions</strong>, Third Edition offers a wealth information that you can put to immediate use.</p>\n', 36, 'O Reilly Media', 'October 3, 2014', 3, 515),
 ('0672325675', 'Teach Yourself SQL in 10 Minutes', '<p><em>Sams Teach Yourself SQL in 10 Minutes</em> has established itself as the gold standard for introductory SQL books, offering a fast-paced accessible tutorial to the major themes and techniques involved in applying the SQL language. Fortas examples are clear and his writing style is crisp and concise. As with earlier editions, this revision includes coverage of current versions of all major commercial SQL platforms. New this time around is coverage of MySQL, and PostgreSQL. All examples have been tested against each SQL platform, with incompatibilities or platform distinctives called out and explained.</p>\n', 15, 'Sams', 'April 3, 2004', 3, 256),
-('0672326728', 'PHP and MySQL Web Development', '<p>The PHP server-side scripting language and the MySQL database management system (DBMS) make a potent pair. Both are open-source products--free of charge for most purposes--remarkably strong, and capable of handling all but the most enormous transaction loads. Both are supported by large, skilled, and enthusiastic communities of architects, programmers, and designers. <em>PHP and MySQL Web Development</em> introduces readers (who are assumed to have little or no experience with the title subjects) to PHP and MySQL for the purpose of creating dynamic Internet sites. It teaches the same skills as introductory Active Server Pages (ASP) and ColdFusion books--technologies that address the same niche.</p>\n\n<p>Authors Luke Welling and Laura Thomsons technique aims to get readers going on their own projects as soon as possible. They present easily digestible sections on specific technical processes--Accessing array contents&nbsp;and Using encryption with PHP&nbsp;are two examples. Each section centers on a sample program that strips the task at hand down to its essentials, enabling the reader to fit the process into his or her own solutions as required. Tables that list options and other nuggets of reference material appear as well, but the many examples and the authors&nbsp;commentary on them take center stage.</p>\n\n<p>For reference material on MySQL, have a look at Paul DuBoiss <em><a href="http://www.amazon.com/exec/obidos/ASIN/0735709211/$%7B0%7D">MySQL</a></em>. On the PHP side, <em><a href="http://www.amazon.com/exec/obidos/ASIN/0735709971/$%7B0%7D">Web Application Development with PHP 4.0</a></em> is excellent. <em>--David Wall</em></p>\n\n<p><strong>Topics covered:</strong></p>\n\n<ul>\n <li>The MySQL database server (for both Unix and Windows)</li>\n  <li>Accessing MySQL databases through PHP scripting (the letters dont really stand for anything)</li>\n <li>Database creation and modification</li>\n <li>PHP tricks in order of increasing complexity--everything from basic SQL queries to secure transactions for commerce</li>\n  <li>Authentication</li>\n <li>Network connectivity</li>\n <li>Session management</li>\n <li>Content customization</li>\n</ul>\n', 33, 'Sams', 'September 3, 2004', 3, 984),
+('0672326728', 'PHP and MySQL Web Development', '<p>The PHP server-side scripting language and the MySQL database management system (DBMS) make a potent pair. Both are open-source products--free of charge for most purposes--remarkably strong, and capable of handling all but the most enormous transaction loads. Both are supported by large, skilled, and enthusiastic communities of architects, programmers, and designers. <em>PHP and MySQL Web Development</em> introduces readers (who are assumed to have little or no experience with the title subjects) to PHP and MySQL for the purpose of creating dynamic Internet sites. It teaches the same skills as introductory Active Server Pages (ASP) and ColdFusion books--technologies that address the same niche.</p>\n\n<p>Authors Luke Welling and Laura Thomsons technique aims to get readers going on their own projects as soon as possible. They present easily digestible sections on specific technical processes--Accessing array contents&nbsp;and Using encryption with PHP&nbsp;are two examples. Each section centers on a sample program that strips the task at hand down to its essentials, enabling the reader to fit the process into his or her own solutions as required. Tables that list options and other nuggets of reference material appear as well, but the many examples and the authors&nbsp;commentary on them take center stage.</p>\n\n<p>For reference material on MySQL, have a look at Paul DuBoiss <em><a href=\"http://www.amazon.com/exec/obidos/ASIN/0735709211/$%7B0%7D\">MySQL</a></em>. On the PHP side, <em><a href=\"http://www.amazon.com/exec/obidos/ASIN/0735709971/$%7B0%7D\">Web Application Development with PHP 4.0</a></em> is excellent. <em>--David Wall</em></p>\n\n<p><strong>Topics covered:</strong></p>\n\n<ul>\n <li>The MySQL database server (for both Unix and Windows)</li>\n  <li>Accessing MySQL databases through PHP scripting (the letters dont really stand for anything)</li>\n <li>Database creation and modification</li>\n <li>PHP tricks in order of increasing complexity--everything from basic SQL queries to secure transactions for commerce</li>\n  <li>Authentication</li>\n <li>Network connectivity</li>\n <li>Session management</li>\n <li>Content customization</li>\n</ul>\n', 33, 'Sams', 'September 3, 2004', 3, 984),
 ('0672328232', 'ASP.NET 2.0 Unleashed', '<p><em>ASP.NET 2.0 Unleashed&nbsp;</em>is a revision of the best-selling <em>ASP.NET Unleashed, </em>by Microsoft Software Legend <strong>Stephen Walther</strong>. It<strong>&nbsp;</strong>covers virtually all features of ASP.NET 2.0&nbsp;including more than 50 new controls, personalization, master pages, and web parts. All code samples are presented in VB and C#. Throughout the more than&nbsp;2,000 pages, you will be shown how to develop state-of-the-art Web applications using Microsofts latest development tools. This resource is guaranteed to be used as a&nbsp;reference guide&nbsp;over and over!</p>\n', 60, 'Sams', 'June 2, 2006', 1, 1992),
 ('0764574892', 'Beginning Regular Expressions', '<p>Regular expressions help users and developers to find and manipulate text more effectively and efficiently. In addition, regular expressions are supported by many scripting languages, programming languages, and databases. This example-rich tutorial helps debunk the traditional reputation of regular expressions as being cryptic. It explains the various parts of a regular expression pattern, what those parts mean, how to use them, and common pitfalls to avoid when writing regular expressions. With chapters on using regular expressions with popular Windows platform software including databases, cross platform scripting languages, and programming languages, youll learn to make effective use of the power provided by regular expressions once you fully comprehend their strengths and potential. What you will learn from this book -Fundamental concepts of regular expressions and how to write them -How to break down a text manipulation problem into component parts so you can then logically construct a regular expression pattern -How to use regular expressions in several scripting and programming languages and software packages -The variations that exist among regular expression dialects -Reusable, real-world working code that can be used to solve everyday regular expression problems Who this book is for: This book is for developers who need to manipulate text but are new to regular expressions. Some basic programming or scripting experience is useful but not required.</p>\n', 40, 'Wrox', 'February 5, 2005', 1, 768),
 ('0782142796', 'Creating Interactive Web Sites with PHP and Web Services', '<p>PHP and MySQL are great tools for building database-driven websites. Theres nothing new about that. What is new is the environment in which your site operates&mdash;a world rich (and growing richer) in web services that can add value and functionality in many different ways. Creating Interactive Web Sites with PHP and Web Services walks you through every step of a major web project&mdash;a content-management system&mdash;teaching you both the basic techniques and little-known tricks you need to build successful web sites. And you can use those skills to develop dynamic applications that will meet your special requirements. Heres some of what youll find covered inside:</p>\n\n<ul>\n <li>Adding, deleting, and displaying data with a custom content-management system</li>\n  <li>Building a template system with PHP</li>\n  <li>Interacting with web services using PHP and MySQL</li>\n  <li>Creating and managing a user system and a shopping cart</li>\n  <li>Processing credit card payments using merchant accounts and third-party payment solutions</li>\n  <li>Tracking site statistics using PHP and MySQL</li>\n <li>Enhancing your site with third-party scripts</li>\n</ul>\n\n<p>Tons of examples, complete with explanations and supported by online source code, will speed your progress, whether youre a true beginner or already have PHP experience. This book is platform-agnostic, so it doesnt matter if youre deploying your site on Linux or Windows. You also get PHP and MySQL references, so you can quickly resolve questions about syntax and similar issues.</p>\n', 40, 'Sybex', 'December 5, 2003', 1, 512),
+('1491918667', 'Learning PHP, Mysql and javascript: with jquery, css and html5', '<p>bla bla</p>\n', 22.29, 'Bookman', 'February 1, 2016', 4, 505),
 ('1590595521', 'Beginning PHP and MySQL 5', '<p><em>Beginning PHP 5 and MYSQL: From Novice to Professional</em> offers a comprehensive introduction to two of the most popular Web application building technologies on the planet: the scripting language PHP and the MySQL database server. This book will not only expose you to the core aspects of both technologies, but will provide valuable insight into how they are used in unison to create dynamic data-driven Web applications.</p>\n\n<p><em>Beginning PHP 5 and MYSQL</em> explains the new features of the latest releases of the worlds most popular Open Source Web development technologies: MySQL 4 database server and PHP 5 scripting language. This book explores the benefits, extensive new features, and advantages of the object-oriented PHP 5, and how it can be used in conjunction with MySQL 4 to create powerful dynamic Web sites.</p>\n\n<p>This is the perfect book for the Web designer, programmer, hobbyist, or novice that wants to learn how to create applications with PHP 5 and MySQL 4, and is a great entrance point for Apresss extensive spectrum of PHP books planned for 2004.</p>\n', 45, 'Apress', 'November 3, 2016', 1, 952),
 ('1590595726', 'Beginning ASP.NET 2.0 in C#', '<p><em>Beginning ASP.NET 2.0 in C# 2005: From Novice to Professional</em> steers you through the maze of ASP.NET web programming concepts. You will learn language and theory simultaneously, mastering the core techniques necessary to develop good coding practices and enhance your skill set.</p>\n\n<p>This book provides thorough coverage of ASP.NET, guiding you from beginning to advanced techniques, such as querying databases from within a web page and performance-tuning your site. Youll find tips for best practices and comprehensive discussions of key database and XML principles.</p>\n\n<p>The book also emphasizes the invaluable coding techniques of object orientation and code-behind, which will enable you to build real-world websites instead of just scraping by with simplified coding practices. By the time you finish this book, you will have mastered the core techniques essential to professional ASP.NET developers.</p>\n', 50, 'Apress', 'January 4, 2006', 1, 1184);
 
@@ -246,7 +257,15 @@ INSERT INTO `bookorderitems` (`orderID`, `ISBN`, `qty`, `price`) VALUES
 (3, '0321344758', 2, 28.00),
 (3, '0596528124', 1, 28.80),
 (3, '1590595521', 2, 36.00),
-(4, '0764574892', 4, 32.00);
+(4, '0764574892', 4, 32.00),
+(5, '1590595521', 2, 36.00),
+(6, '0672328232', 1, 48.00),
+(6, '0782142796', 5, 32.00),
+(7, '0071841580', 1, 24.31),
+(7, '0321344758', 1, 28.00),
+(7, '1491918667', 1, 17.83),
+(8, '0071841580', 1, 24.31),
+(8, '0672328232', 1, 48.00);
 
 -- --------------------------------------------------------
 
@@ -268,7 +287,11 @@ INSERT INTO `bookorders` (`orderID`, `custID`, `orderdate`) VALUES
 (1, 2, 1497202424),
 (2, 2, 1497202564),
 (3, 3, 1497202815),
-(4, 2, 1497208499);
+(4, 2, 1497208499),
+(5, 2, 1497367066),
+(6, 3, 1497370121),
+(7, 4, 1497372948),
+(8, 4, 1497373244);
 
 -- --------------------------------------------------------
 
@@ -356,22 +379,23 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `bookauthors`
 --
 ALTER TABLE `bookauthors`
-  MODIFY `AuthorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `AuthorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `bookcategories`
 --
 ALTER TABLE `bookcategories`
-  MODIFY `CategoryID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `CategoryID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `bookcustomers`
 --
 ALTER TABLE `bookcustomers`
-  MODIFY `custID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `custID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `bookorders`
 --
 ALTER TABLE `bookorders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
