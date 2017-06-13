@@ -8,7 +8,7 @@ Class LivroDAO extends DAO {
 
 	function listLivros($conn){
 
-		$query = "SELECT * FROM " . $this->tableName . " order by rand() limit 3";
+		$query = "SELECT * FROM " . $this->tableName;
 		
 		$livros_arr["livros"] = array();
 		
